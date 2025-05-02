@@ -3,8 +3,8 @@
   <p>Configure NVIDIA's Digital Vibrance on Wayland</p>
 </div>
 
+## DOWNLOAD APPIMAGE v1.0.5 👉 https://github.com/JustLachin/nVibrant-gui/releases/download/v1.0.5-gui/nvibrant-gui.AppImage
 ## 📦 Installation
-###Download Source Code v1.0.5 👉 https://github.com/JustLachin/nVibrant-gui/releases/download/v1.0.5-gui/Source-Code.zip
 
 > [!IMPORTANT]
 > This repository is a proof of concept that will be improved over time, e.g. proper CLI and distro packaging are WIP. Contributions are welcome, as I'm not primarily a C/C++ developer 🙂
