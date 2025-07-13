@@ -3,7 +3,7 @@
   <p>Configure NVIDIA's Digital Vibrance on Wayland</p>
 </div>
 
-## DOWNLOAD APPIMAGE v1.0.6 👇 https://github.com/JustLachin/nVibrant-gui/releases/download/v1.0.6-gui/nvibrant.zip
+## DOWNLOAD v1.0.6 NEW REDUCED EDITION 👇 https://github.com/JustLachin/nVibrant-gui/releases/download/v1.0.6-gui-new-reduced/nvibrant.zip
 
 <img src="https://raw.githubusercontent.com/JustLachin/nVibrant-gui/refs/heads/main/image.png"  alt="Preview"/>
 
