@@ -5,7 +5,7 @@
 
 ## DOWNLOAD v1.0.6 NEW REDUCED EDITION 👇 https://github.com/JustLachin/nVibrant-gui/releases/download/v1.0.6-gui-new-reduced/nvibrant.zip
 
-<img src="https://raw.githubusercontent.com/JustLachin/nVibrant-gui/refs/heads/main/image.png"  alt="Preview"/>
+<img src="https://raw.githubusercontent.com/JustLachin/nVibrant-gui/refs/heads/main/main.png"  alt="Preview"/>
 
 > [!IMPORTANT]
 > This repository is a proof of concept that will be improved over time, e.g. proper CLI and distro packaging are WIP. Contributions are welcome, as I'm not primarily a C/C++ developer 🙂
