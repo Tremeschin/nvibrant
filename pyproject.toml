@@ -18,9 +18,11 @@ nvibrant = "nvibrant.__main__:main"
 
 [tool.uv]
 check-url = "https://pypi.org/simple"
-dev-dependencies = [
-    "meson~=1.8.2",
-    "ninja~=1.11.1.4",
+
+[dependency-groups]
+dev = [
+    "meson~=1.9.0",
+    "ninja~=1.13.0",
 ]
 
 [build-system]
