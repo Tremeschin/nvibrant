@@ -12,6 +12,8 @@
   <br>
 </div>
 
+<img src="https://github.com/user-attachments/assets/962a3f4d-6022-402f-a47b-27aeba595a19"/>
+
 ## 🔥 Description
 
 NVIDIA GPUs have a nice feature called *Digital Vibrance* that increases the colors saturation of the display. The option is readily available on [nvidia-settings](https://github.com/NVIDIA/nvidia-settings/) in Linux, but is too coupled with `libxnvctrl`, making it softly "exclusive" to the X11 display server over wayland; but I paid for my pixels to glow :^)
