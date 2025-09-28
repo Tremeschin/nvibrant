@@ -177,19 +177,7 @@ Display 0:
 • (4, DP  ) • Set Vibrance (    0) • None
 ```
 
-### 🔴 Multiple GPUs
-
-If you have multiple devices, specify a `NVIDIA_GPU=N` index:
-
-```sh
-$ NVIDIA_GPU=1 nvibrant 0 100
-
-Display 0:
-• (0, HDMI) • Set Vibrance (    0) • Success
-• (1, DP  ) • Set Vibrance (  100) • Success
-```
-
-### 🟡 Autostarting
+### 🔴 Autostarting
 
 For simplicity, a Systemd user service running either `uvx` for the latest releases (in case of driver updates), or a prebuilt binary directly should cover most users, plus it integrates well with [dotfiles](https://github.com/Tremeschin/DotFiles/blob/main/.config/systemd/user/nvibrant.service) repositories!
 
@@ -213,6 +201,24 @@ Enable the service with `systemctl --user enable --now nvibrant.service`
 - You can also pin it to a specific version with `uvx nvibrant==1.1.0 (args)` to have more control
 - Can also have a `~/.local/bin/nvibrant` and use `ExecStart=%h/.local/bin/nvibrant (args)`
 
+### 🟡 Hybrid Systems
+
+> [!IMPORTANT]
+> I have never used a hybrid system, this is unknown and experimental territory.
+> - Get in touch to improve this section, report good or bad results!
+
+Systems with both integrated and dedicated GPUs (like Intel Iris + NVIDIA) can be tricky, especially laptops.
+
+What often happens is that the iGPU is the primary one that "owns" the displays, with nvidia's frames being passed through it (muxed). This is usually done for power efficiency, only using nvidia on intensive tasks.
+
+- **Desktop** users should be fine, as the displays are driven and connected directly on the nvidia card.
+
+- **Your best chances** are on disabling the iGPU altogether in the BIOS/UEFI, making nvidia the primary and only GPU in laptops systems - _Expect much worse battery life with such!_
+
+Linux has a couple solutions for GPU dispatching - [PRIME](https://wiki.archlinux.org/title/PRIME), [Optimus](https://wiki.archlinux.org/title/NVIDIA_Optimus) and [Bumblebee](https://wiki.archlinux.org/title/Bumblebee). It is currently unknown if any of these allow both nvibrant to interface with the drivers, and have visual changes altogether.
+
+<sup><b>Note:</b> This is different than libvibrant, which uses the Color Transfer Matrix properties of X11 displays, common to both GPUs.</sup>
+
 ### 🟢 Dithering
 
 Some users have reported issues with dithering causing flickering or artifacts on their displays [(1)](https://github.com/Tremeschin/nvibrant/issues/18) [(2)](https://www.reddit.com/r/linux_gaming/comments/1jmsva0/comment/mkehyuk/), which also lacks a Wayland option to disable in `nvidia-settings`. Fear not, you can change it with nvibrant too!
@@ -229,7 +235,19 @@ enum NvKmsDpyAttributeRequestedDitheringValue {
 };
 ```
 
-### 🔵 Common Issues
+### 🔵 Multiple GPUs
+
+If you have multiple devices, specify a `NVIDIA_GPU=N` index:
+
+```sh
+$ NVIDIA_GPU=1 nvibrant 0 100
+
+Display 0:
+• (0, HDMI) • Set Vibrance (    0) • Success
+• (1, DP  ) • Set Vibrance (  100) • Success
+```
+
+### ⚠️ Common Issues
 
 Please [report](https://github.com/Tremeschin/nvibrant/issues) unknown or unlisted issues to be added here!
 
