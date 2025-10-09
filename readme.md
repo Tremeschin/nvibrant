@@ -179,7 +179,7 @@ Display 0:
 
 ### 🔴 Autostarting
 
-For simplicity, a Systemd user service running either `uvx` for the latest releases (in case of driver updates), or a prebuilt binary directly should cover most users, plus it integrates well with [dotfiles](https://github.com/Tremeschin/DotFiles/blob/main/.config/systemd/user/nvibrant.service) repositories!
+For simplicity, a Systemd user service running either [`uvx`](https://docs.astral.sh/uv/concepts/tools/) for the latest releases (in case of driver updates), or a [prebuilt binary](https://github.com/Tremeschin/nvibrant/releases) directly should cover most users, plus it integrates well with [dotfiles](https://github.com/Tremeschin/DotFiles/blob/main/.config/systemd/user/nvibrant.service) repositories!
 
 Create a file at `~/.config/systemd/user/nvibrant.service` with the content:
 
@@ -197,9 +197,12 @@ WantedBy=default.target
 ```
 
 Enable the service with `systemctl --user enable --now nvibrant.service`
-
 - You can also pin it to a specific version with `uvx nvibrant==1.1.0 (args)` to have more control
-- Can also have a `~/.local/bin/nvibrant` and use `ExecStart=%h/.local/bin/nvibrant (args)`
+- Or a C++ binary at `~/.local/bin/nvibrant` and use `ExecStart=%h/.local/bin/nvibrant (args)`
+
+Another option is to use [uv tools](https://docs.astral.sh/uv/concepts/tools/) for manual control and/or offline usage:
+- Run `uv tool install nvibrant` once (upgrade with `uv tool update nvibrant`)
+- Use `ExecStart=uv tool run nvibrant (args)` in the service
 
 ### 🟡 Hybrid Systems
 
