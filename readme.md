@@ -190,6 +190,7 @@ After=graphical.target
 
 [Service]
 Type=oneshot
+ExecStartPre=/bin/sleep 5
 ExecStart=uvx nvibrant 1023 1023
 
 [Install]
@@ -199,6 +200,7 @@ WantedBy=default.target
 Enable the service with `systemctl --user enable --now nvibrant.service`
 - You can also pin it to a specific version with `uvx nvibrant==1.1.0 (args)` to have more control
 - Or a C++ binary at `~/.local/bin/nvibrant` and use `ExecStart=%h/.local/bin/nvibrant (args)`
+- Sleeping for a few seconds can prevent racing conditions with the display server starting up
 
 Another option is to use [uv tools](https://docs.astral.sh/uv/concepts/tools/) for manual control and/or offline usage:
 - Run `uv tool install nvibrant` once (upgrade with `uv tool update nvibrant`)
