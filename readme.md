@@ -1,3 +1,6 @@
+> [!NOTE]
+> This project is complete and stable, no actions are needed unless a driver update breaks it!
+
 <div align="center">
   <h1>nvibrant</h1>
   <p>Configure NVIDIA's Digital Vibrance on Wayland</p>
@@ -24,7 +27,7 @@ This repository uses `nvidia-modeset` and `nvkms` headers found at [nvidia/open-
 
 **Note**: A future, and intended way, will be through [NVML](https://developer.nvidia.com/management-library-nvml), as evident by some [nvidia-settings](https://github.com/NVIDIA/nvidia-settings/blob/6c755d9304bf4761f2b131f0687f0ebd1fcf7cd4/src/libXNVCtrlAttributes/NvCtrlAttributesNvml.c#L1235) comments
 
-<sup><b>❤️ Consider</b> [supporting](https://github.com/sponsors/Tremeschin/) my work, this took 22 hours to figure out, implement, write a readme, make it convenient 🫠</sup>
+<sup><b>❤️ Consider</b> [supporting](https://github.com/sponsors/Tremeschin/) my work, this took 26 hours to figure out, implement, write a readme, make it convenient 🫠</sup>
 
 ## 📦 Installation
 

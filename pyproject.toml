@@ -8,7 +8,7 @@ authors     = [{name="Tremeschin", email="29046864+Tremeschin@users.noreply.gith
 dynamic     = ["version"]
 readme      = "readme.md"
 license     = "GPL-3.0"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 dependencies = [
     "packaging",
 ]
