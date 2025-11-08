@@ -3,3 +3,6 @@
 # Prebuilt binaries
 nvibrant/resources
 build
+
+# Output from `nix build`
+result
