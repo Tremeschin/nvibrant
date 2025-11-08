@@ -19,7 +19,7 @@
 
 ## 🔥 Description
 
-NVIDIA GPUs have a nice feature called *Digital Vibrance* that increases the colors saturation of the display. The option is readily available on [nvidia-settings](https://github.com/NVIDIA/nvidia-settings/) in Linux, but is too coupled with `libxnvctrl`, making it softly "exclusive" to the X11 display server over wayland; but I paid for my pixels to glow :^)
+NVIDIA GPUs have a nice feature called _Digital Vibrance_ that increases the colors saturation of the display. The option is readily available on [nvidia-settings](https://github.com/NVIDIA/nvidia-settings/) in Linux, but is too coupled with `libxnvctrl`, making it softly "exclusive" to the X11 display server over wayland; but I paid for my pixels to glow :^)
 
 An interesting observation is that the setting persists after modifying it on X11 and then switching to Wayland. I theorized [(1)](https://github.com/libvibrant/vibrantLinux/issues/27#issuecomment-2729822152) [(2)](https://www.reddit.com/r/archlinux/comments/1gx1hir/comment/mhpe2pk/?context=3) it was possible to call some shared library or interface to configure it directly in their driver, independently of the display server, and indeed, it is possible!
 
@@ -32,7 +32,6 @@ This repository uses `nvidia-modeset` and `nvkms` headers found at [nvidia/open-
 ## 📦 Installation
 
 There's multiple ways to get nvibrant, do check the [usage](#-usage) and [autostarting](#-autostarting) sections afterwards!
-
 
 ### 🔴 Python package
 
@@ -55,7 +54,6 @@ $ uvx nvibrant==1.1.0 (args)
 ```
 
 <sup><b>Note:</b> This package is an official release channel for nvibrant</sup>
-
 
 ### 🟡 Package manager
 
@@ -106,7 +104,32 @@ Install from your distro's package manager, it may use the python package at sys
 
 <sup><b>Obligatory:</b> Third-party packages are often safe but not checked by me</sup>
 
-### 🟢 Prebuilt binaries
+### 🟢 Nix Flakes
+
+Add this repo to your flake's inputs:
+
+```nix
+# flake.nix
+{
+  inputs = {
+    nvibrant.url = "github:Tremeschin/nvibrant";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
+}
+```
+
+Then include the overlay in a config file to add the `nvibrant` package:
+
+```nix
+  # configuration.nix / home.nix
+  { inputs, ... }: {
+    nixpkgs.overlays = [ inputs.nvibrant.overlays.default ];
+  }
+```
+
+The flake also provides a small module for autostarting nvibrant with a systemd service. See the **Autostarting** section for an example.
+
+### 🔵 Prebuilt binaries
 
 You can download all latest builds made by GitHub Actions in the [Releases](https://github.com/Tremeschin/nvibrant/releases) page as a `.tar.gz` archive, just remember to run `chmod +x nvibrant*` to mark the files as executable after extracting!
 
@@ -114,21 +137,31 @@ You can download all latest builds made by GitHub Actions in the [Releases](http
 
 > [!NOTE]
 > There is some level of compatibility across different nvibrant and driver versions, as the related code is mostly stable on nvidia's side. Always prefer using the closest, but not newer, version to your driver!
+>
 > - **Example**: Running `nvibrant-linux-amd64-575.51.03-v1.0.6.bin` on driver `v575.64.03` works
 > - This is automatically handled by the python utility, hence the strong recommendation :)
 
+### 🟣 Build it yourself
 
-### 🔵 Build it yourself
-
-**Requirements**: Have `git`, `gcc` compilers; `meson` and `ninja` are included on `python` dependencies
+First you'll need to clone the repo alongside `open-gpu-kernel-modules`:
 
 ```sh
-# Clone the code alongside open-gpu-kernel-modules
 git clone https://github.com/Tremeschin/nvibrant && cd nvibrant
 git submodule update --init --recursive
 ```
 
 From here, you can either build only the C++ part for a target driver:
+
+**Nix Method**
+
+```sh
+$ nix build
+$ ./build/nvibrant 512 512
+```
+
+**Manual Method**
+
+> Make sure you have `git`, `gcc` compilers; `meson` and `ninja` are included on `python` dependencies
 
 ```sh
 # Any tag from https://github.com/NVIDIA/open-gpu-kernel-modules/tags
@@ -184,6 +217,31 @@ Display 0:
 
 For simplicity, a Systemd user service running either [`uvx`](https://docs.astral.sh/uv/concepts/tools/) for the latest releases (in case of driver updates), or a [prebuilt binary](https://github.com/Tremeschin/nvibrant/releases) directly should cover most users, plus it integrates well with [dotfiles](https://github.com/Tremeschin/DotFiles/blob/main/.config/systemd/user/nvibrant.service) repositories!
 
+#### Nix Method
+
+Add the following to your nix config:
+
+```nix
+# nvibrant.nix
+{ inputs, ... }: {
+  imports = [ # use the other import for NixOS configs
+    inputs.nvibrant.homeModules.default
+    # inputs.nvibrant.nixosModules.default
+  ];
+
+  services.nvibrant = {
+    enable = true; # toggles the service
+    arguments = [ # sets the vibrancy level for each output
+      "512"
+      "1023"
+      # ...
+    ];
+  };
+}
+```
+
+#### Manual Method
+
 Create a file at `~/.config/systemd/user/nvibrant.service` with the content:
 
 ```ini
@@ -201,11 +259,13 @@ WantedBy=default.target
 ```
 
 Enable the service with `systemctl --user enable --now nvibrant.service`
+
 - You can also pin it to a specific version with `uvx nvibrant==1.1.0 (args)` to have more control
 - Or a C++ binary at `~/.local/bin/nvibrant` and use `ExecStart=%h/.local/bin/nvibrant (args)`
 - Sleeping for a few seconds can prevent racing conditions with the display server starting up
 
 Another option is to use [uv tools](https://docs.astral.sh/uv/concepts/tools/) for manual control and/or offline usage:
+
 - Run `uv tool install nvibrant` once (upgrade with `uv tool update nvibrant`)
 - Use `ExecStart=uv tool run nvibrant (args)` in the service
 
@@ -213,6 +273,7 @@ Another option is to use [uv tools](https://docs.astral.sh/uv/concepts/tools/) f
 
 > [!IMPORTANT]
 > I have never used a hybrid system, this is unknown and experimental territory.
+>
 > - Get in touch to improve this section, report good or bad results!
 
 Systems with both integrated and dedicated GPUs (like Intel Iris + NVIDIA) can be tricky, especially laptops.
