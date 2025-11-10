@@ -88,6 +88,24 @@ Install from your distro's package manager, it may use the python package at sys
       <a href="https://github.com/Incognitux">@Incognitux</a>
     </td>
   </tr>
+  
+  <!-- Nix Flakes -->
+  <tr>
+    <td>
+      <img src="https://raw.githubusercontent.com/edent/SuperTinyIcons/refs/heads/master/images/svg/nixos.svg" width="64">
+    </td>
+    <td>
+      Nix Flakes
+    </td>
+    <td>
+      Use the <a href="https://github.com/mikaeladev/nix-nvibrant"><code>nix-nvibrant</code></a> flake.
+      <br />
+      See repo for instructions.
+    </td>
+    <td>
+      <a href="https://github.com/mikaeladev">@mikaeladev</a>
+    </td>
+  </tr>
 
   <!-- Add yours via PR -->
   <tr>
