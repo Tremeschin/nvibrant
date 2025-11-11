@@ -80,8 +80,8 @@ Install from your distro's package manager, it may use the python package at sys
     <td>
       Install the <a href="https://aur.archlinux.org/packages/nvibrant-bin"><code>nvibrant-bin</code></a> AUR package:
       <ul>
-        <li><code><a href="https://github.com/Morganamilo/paru">paru</a> -Syu nvibrant-bin</code></li>
-        <li><code><a href="https://github.com/Jguer/yay">yay</a> -Syu nvibrant-bin</code></li>
+        <li><code><a href="https://github.com/Morganamilo/paru">paru</a> -S nvibrant-bin</code></li>
+        <li><code><a href="https://github.com/Jguer/yay">yay</a> -S nvibrant-bin</code></li>
       </ul>
     </td>
     <td>
@@ -122,7 +122,7 @@ Install from your distro's package manager, it may use the python package at sys
   </tr>
 </table>
 
-<sup><b>Obligatory:</b> Third-party packages are often safe but not checked by me</sup>
+<sup><b>Obligatory:</b> Community packages are often safe, but not always checked by me</sup>
 
 ### 🟢 Prebuilt binaries
 
