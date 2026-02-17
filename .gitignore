@@ -1,5 +1,2 @@
-*.pyc
-
-# Prebuilt binaries
-nvibrant/resources
-build
+# Auto generated
+nvibrant/driver

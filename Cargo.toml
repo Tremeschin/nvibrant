@@ -1,0 +1,31 @@
+[package]
+name        = "nvibrant"
+version     = "2.0.0"
+authors     = ["Tremeschin"]
+description = "🟢 Nvidia Digital Vibrance on Wayland"
+repository  = "https://github.com/Tremeschin/nvibrant"
+license     = "GPL-3.0"
+readme      = "readme.md"
+edition     = "2024"
+
+[[bin]]
+name = "nvibrant"
+path = "nvibrant/main.rs"
+
+[dependencies]
+anyhow = "1.0.101"
+clap   = "4.5.59"
+libc   = "0.2"
+
+[build-dependencies]
+anyhow  = "1.0.101"
+bindgen = "0.72"
+rayon = "1.11.0"
+
+[profile.dev]
+strip = true
+
+[profile.release]
+codegen-units = 1
+opt-level = "z"
+lto = "fat"
