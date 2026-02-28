@@ -1,50 +1,42 @@
+import os
+import subprocess
 import sys
 from textwrap import dedent
-from typing import NoReturn
 
-from nvibrant import (
-    __version__,
-    get_best,
-    get_driver,
-    shell,
-)
+import nvibrant
 
 
-def main() -> NoReturn:
-    (closest, nvibrant) = get_best()
-    current = get_driver()
+def main():
+    (closest, binary) = nvibrant.get_best()
+    current = nvibrant.get_driver()
 
-    # Ensure executable file and pass incoming argv
-    call = shell("chmod", "+x", nvibrant, echo=False)
-    call = shell(nvibrant, *sys.argv[1:], echo=False)
+    # Files are force_include in hatchling instead of defined as shared_scripts,
+    # so they are more easily accesible in resources dir (where this file is).
+    # However, wheels (zips) doesn't support/might lose xattrs, ensure +x flag
+    os.chmod(binary, 0o755)
 
-    if (call.returncode != 0):
+    try:
+        subprocess.check_call((binary, *sys.argv[1:]))
+    except subprocess.CalledProcessError as call:
         if (closest != current):
             print(dedent(f"""
-                {'-'*80}
+                {'-'*72}
 
-                Warn: nvibrant v{__version__} doesn't bundle exact binaries for your driver v{current},
-                      the closest known previous version v{closest} was used but failed
+                Warn: nvibrant doesn't bundle exact binaries for your v{current} driver;
+                  the closest known, previous version v{closest} was used, but failed
 
-                You can ignore this if the error is about usage and not ioctl. Note that there
-                is some level of compatibility between driver versions, as the related code is
-                mostly stable on nvidia's side. Chances are your driver is already supported,
-                if there hasn't been a release in the last few days - check that here:
+                You can ignore this if the error above isn't related to ioctl calls.
 
-                • https://github.com/NVIDIA/open-gpu-kernel-modules/tags
+                Note that there is some level of compatibility between major driver
+                versions, as the related code is mostly stable on nvidia's side.
 
-                For Hybrid Systems (Integrated + Dedicated GPUs), please see the relevant readme
-                section. Your best chances are on disabling the iGPU in the BIOS/UEFI altogether
-                for nvidia to control the displays, expect much worse battery life with such!
-
-                Otherwise, maybe there's a newer version available supporting your driver?
+                Otherwise, maybe there is a new release supporting your driver?
 
                 • GitHub: https://github.com/Tremeschin/nvibrant
                 • PyPI: https://pypi.org/project/nvibrant/
                 • System update on your package manager\
             """))
-        sys.exit(1)
-    sys.exit(0)
+        sys.exit(call.returncode)
 
 if (__name__ == "__main__"):
     main()

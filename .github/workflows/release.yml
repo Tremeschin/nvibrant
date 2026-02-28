@@ -1,6 +1,10 @@
 name: release
 on:
   workflow_dispatch:
+    inputs:
+      publish:
+        required: true
+        type: boolean
 
 jobs:
   main:
@@ -13,29 +17,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          submodules: recursive
+          submodules: true
           fetch-depth: 0
 
       - name: Install uv
         uses: astral-sh/setup-uv@v6
 
-      - name: Get options
-        run: uv run nvibrant/version.py >> $GITHUB_ENV
+      - name: Get version
+        run: echo "VERSION=$(uv version --short)" >> $GITHUB_ENV
 
-      - name: Compile
-        run: uv run nvibrant/build.py
-
-      - name: Build wheel
-        run: uv build --wheel
-
-      - name: Publish to PyPI
-        run: uv publish dist/*.whl
-
-      - name: Compress binaries
-        run: |
-          tar --transform='s|^nvibrant/resources/|nvibrant/|' \
-              -czf dist/nvibrant-${{env.GHA_VERSION}}-bin.tar.gz \
-              nvibrant/resources/*.bin
+      - name: Make wheels
+        run: uv run make.py
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
@@ -43,11 +35,14 @@ jobs:
           name: dist
           path: dist/*
 
+      - name: Publish to PyPI
+        if: ${{ github.event.inputs.publish }}
+        run: uv publish dist/*.whl
+
       - name: Create release
+        if: ${{ github.event.inputs.publish }}
         uses: softprops/action-gh-release@v2
         with:
-          name: Release v${{env.GHA_VERSION}}
-          tag_name: v${{env.GHA_VERSION}}
-          files: |
-            dist/*.whl
-            dist/*.tar.gz
+          name: Release v${{ env.VERSION }}
+          tag_name: v${{ env.VERSION }}
+          files: dist/*

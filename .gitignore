@@ -1,5 +1,1 @@
-*.pyc
-
-# Prebuilt binaries
-nvibrant/resources
 build

@@ -3,7 +3,7 @@
 
 <div align="center">
   <h1>nvibrant</h1>
-  <p>Configure NVIDIA's Digital Vibrance on Wayland</p>
+  <p>Configure Nvidia's Digital Vibrance on Wayland</p>
   <a href="https://pypi.org/project/nvibrant/"><img src="https://img.shields.io/pypi/v/nvibrant?label=PyPI&color=blue"></a>
   <a href="https://pypi.org/project/nvibrant/"><img src="https://img.shields.io/pypi/dw/nvibrant?label=Installs&color=blue"></a>
   <a href="https://github.com/Tremeschin/nvibrant/"><img src="https://img.shields.io/github/v/tag/Tremeschin/nvibrant?label=GitHub&color=orange"></a>
@@ -88,7 +88,7 @@ Install from your distro's package manager, it may use the python package at sys
       <a href="https://github.com/Incognitux">@Incognitux</a>
     </td>
   </tr>
-  
+
   <!-- Nix Flakes -->
   <tr>
     <td>
@@ -124,7 +124,7 @@ Install from your distro's package manager, it may use the python package at sys
       <a href="https://github.com/ykshek">@ykshek</a>
     </td>
   </tr>
-  
+
   <!-- Add yours via PR -->
   <tr>
     <td>...</td>
@@ -144,15 +144,20 @@ Install from your distro's package manager, it may use the python package at sys
 
 ### 🟢 Prebuilt binaries
 
-You can download all latest builds made by GitHub Actions in the [Releases](https://github.com/Tremeschin/nvibrant/releases) page as a `.tar.gz` archive, just remember to run `chmod +x nvibrant*` to mark the files as executable after extracting!
+You can download all builds made by GitHub Actions in the [releases](https://github.com/Tremeschin/nvibrant/releases) page as `.whl` zips, eg. extract with:
 
-- Run them directly as `./nvibrant-linux-amd64-<driver>-v<version>.bin (args)`
+```sh
+# Selective unzip and ensure executable files
+unzip -j "nvibrant-*.whl" "nvibrant/resources/*" -d bin
+chmod +x "bin/*"
+```
+
+Run them directly as `./bin/nvibrant-$driver (...)`
 
 > [!NOTE]
 > There is some level of compatibility across different nvibrant and driver versions, as the related code is mostly stable on nvidia's side. Always prefer using the closest, but not newer, version to your driver!
-> - **Example**: Running `nvibrant-linux-amd64-575.51.03-v1.0.6.bin` on driver `v575.64.03` works
+> - **Example**: Running `nvibrant-575.51.03` on driver `v575.64.03` works
 > - This is automatically handled by the python utility, hence the strong recommendation :)
-
 
 ### 🔵 Build it yourself
 
@@ -161,7 +166,7 @@ You can download all latest builds made by GitHub Actions in the [Releases](http
 ```sh
 # Clone the code alongside open-gpu-kernel-modules
 git clone https://github.com/Tremeschin/nvibrant && cd nvibrant
-git submodule update --init --recursive
+git submodule update --init
 ```
 
 From here, you can either build only the C++ part for a target driver:
@@ -175,12 +180,10 @@ $ meson setup --buildtype release ./build && ninja -C ./build
 $ ./build/nvibrant 512 512
 ```
 
-Or build them all for the python utility to use:
+Or make a wheel for all drivers at `dist/*`:
 
 ```sh
-# Installs on the user's site-packages (editable)
-$ python3 -m pip install -r requirements.txt
-$ python3 ./nvibrant/build.py
+$ uv run make.py
 ```
 
 ## 🚀 Usage
