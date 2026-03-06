@@ -268,7 +268,7 @@ Display 0:
 • (1, DP  ) • Set Vibrance (  100) • Success
 ```
 
-### ⚠️ Common Issues
+## Common Issues
 
 Please [report](https://github.com/Tremeschin/nvibrant/issues) unknown or unlisted issues to be added here!
 
@@ -276,13 +276,4 @@ Please [report](https://github.com/Tremeschin/nvibrant/issues) unknown or unlist
 
 - Ensure you have the `nvidia-modeset` kernel module loaded, as it is required for the ioctl calls to work. You can check this with `lsmod | grep nvidia`. Else, add it to your kernel boot parameters.
 
-- It's possible that nvibrant may fail on future or older drivers due to differences between the internal structs and enums in the latest `nvkms` headers. Please report any issues you encounter!
-
-## ⭐️ Future Work
-
-Integrating this work directly in [libvibrant](https://github.com/libvibrant/) would be the ideal solution, although matching the nvidia driver version could be annoying for a generalized solution. Feel free to base off this code for an upstream solution and PR, in the meantime, here's some local improvements that could be made:
-
-- Make an actual CLI interface with `--help`, `--version`, etc.
-- I am _probably_ not doing safe-C code or types right
-
-Contributions are welcome if you are more C/C++ savy than me! 🙂
+- It's possible that nvibrant may fail on future or older drivers due to differences between the internal structs and enums in the latest `nvkms` headers, hit me up for a patch release!

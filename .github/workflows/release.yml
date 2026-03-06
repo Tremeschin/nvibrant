@@ -27,6 +27,8 @@ jobs:
       - name: Get version
         run: echo "VERSION=$(uv version --short)" >> $GITHUB_ENV
 
+      - run: echo "Version is $VERSION"
+
       - name: Make wheel
         run: uv build --wheel
 
@@ -37,11 +39,11 @@ jobs:
           path: dist/*
 
       - name: Publish to PyPI
-        if: ${{ github.event.inputs.publish }}
-        run: uv publish dist/*.whl
+        if: ${{ inputs.publish }}
+        run: uv publish
 
       - name: Create release
-        if: ${{ github.event.inputs.publish }}
+        if: ${{ inputs.publish }}
         uses: softprops/action-gh-release@v2
         with:
           name: Release v${{ env.VERSION }}
