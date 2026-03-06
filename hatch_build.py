@@ -1,10 +1,10 @@
 import os
 import subprocess
 import sys
-import sysconfig
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
+import packaging.tags
 from hatchling.builders.hooks.plugin.interface import BuildHookInterface
 
 # ---------------------------------------------------------------------------- #
@@ -34,9 +34,26 @@ class BuildHook(BuildHookInterface):
     def initialize(self, version: str, build: dict) -> None:
 
         # Make wheels strictly for the host platform
-        # https://peps.python.org/pep-0425/#platform-tag
-        _platform = sysconfig.get_platform().replace("-", "_").replace(".", "_")
-        build["tag"] = f"py3-none-" + _platform
+        # https://packaging.python.org/en/latest/specifications/platform-compatibility-tags/
+        for tag in packaging.tags.sys_tags():
+
+            # Skip generic linux not allowed in PyPI
+            # https://github.com/pypa/packaging/issues/160
+            if tag.platform.startswith("linux_"):
+                continue
+            if "local" in tag.platform:
+                continue
+
+            # Mark broader compatibility than host
+            for arch in ("x86_64", "aarch64"):
+                if arch not in tag.platform:
+                    continue
+                if "manylinux" in tag.platform:
+                    build["tag"] = f"py3-none-manylinux_2_17_{arch}"
+                elif "musllinux" in tag.platform:
+                    build["tag"] = f"py3-none-musllinux_1_1_{arch}"
+            break
+
         build["pure_python"] = False
 
         # Configure the project
