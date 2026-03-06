@@ -1,5 +1,5 @@
 
-## 📦 v1.2.0
+## 📦 v1.2.0 <a id="v1.2.0"></a>
 
 Maintenance release, support newer drivers, major packaging changes.
 
@@ -22,7 +22,7 @@ After learning a few tricks writing [rustbin](https://github.com/BrokenSource/Ru
 
 <small><b>Note</b> that source distributions are intentionally not supported for technical reasons (complex build steps), and that nvidia only has drivers for x86-64 glibc and aarch64 linux (the package is complete).</small>
 
-## 📦 v1.1.0
+## 📦 v1.1.0 <a id="v1.1.0"></a>
 
 First release with significant changes and new features in a while. Should be fully compatible with the previous usage, recommendation to use pinned version still holds.
 
@@ -32,20 +32,18 @@ First release with significant changes and new features in a while. Should be fu
 
 <small><b>Note:</b> The env var defaults to `vibrance` if unset, in case you use it elsewhere - wished it was a CLI, but it works and I have other priorities.</small>
 
-
-## 📦 v1.0.6
+## 📦 v1.0.6 <a id="v1.0.6"></a>
 
 - Add proper Multi GPU support with `NVIDIA_GPU=index` (default: 0) environment variable [#8](https://github.com/Tremeschin/nvibrant/issues/8)
 - Shouldn't break compatibility, slight worry for `>= v575` drivers, feedback welcome!
 
-
-## 📦 v1.0.5
+## 📦 v1.0.5 <a id="v1.0.5"></a>
 
 - Search for a closest match of a previous driver in the bundled files if an exact match is not found (Commit [`f22db7`](https://github.com/Tremeschin/nVibrant/commit/f22db7395545ac93332cf87b197ec80e4d5d1717), issue [#7](https://github.com/Tremeschin/nvibrant/issues/7)). This makes it so that patch or minor bumps don't need a build every time. Should work even across major releases, you can't win if you don't play, right?
 - Added `packaging` dependency on python for easily finding the best version
 
 
-## 📦 v1.0.4
+## 📦 v1.0.4 <a id="v1.0.4"></a>
 
 - Releases are now also published on [PyPI](https://pypi.org/project/nvibrant/). All nvidia driver versions binaries are bundled with them, using the one matching your current driver at runtime.
 - Move `meson` and `ninja` from the regular dependencies to development dependencies of v1.0.3 on PyPI
