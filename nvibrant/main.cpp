@@ -76,10 +76,7 @@ int main(int argc, char *argv[]) {
     memset(&allocDevice, 0, sizeof(allocDevice));
     memcpy(&allocDevice.request.deviceId, &NVIDIA_GPU, sizeof(NvU32));
     strcpy(allocDevice.request.versionString, NVIDIA_DRIVER_VERSION);
-    allocDevice.request.sliMosaic = NV_FALSE;
-    allocDevice.request.tryInferSliMosaicFromExistingDevice = NV_FALSE;
     allocDevice.request.no3d = NV_TRUE;
-    allocDevice.request.enableConsoleHotplugHandling = NV_FALSE;
     if (easy_nvkms_ioctl(modeset, NVKMS_IOCTL_ALLOC_DEVICE, &allocDevice) < 0) {
         switch (allocDevice.reply.status) {
             case NVKMS_ALLOC_DEVICE_STATUS_VERSION_MISMATCH:
