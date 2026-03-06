@@ -71,12 +71,8 @@ Install from your distro's package manager, it may use the python package at sys
 
   <!-- Arch Linux -->
   <tr>
-    <td>
-      <img src="https://raw.githubusercontent.com/edent/SuperTinyIcons/refs/heads/master/images/svg/arch_linux.svg" width="64">
-    </td>
-    <td>
-      Arch Linux
-    </td>
+    <td><img src="https://raw.githubusercontent.com/edent/SuperTinyIcons/refs/heads/master/images/svg/arch_linux.svg" width="64"></td>
+    <td>Arch Linux</td>
     <td>
       Install the <a href="https://aur.archlinux.org/packages/nvibrant-bin"><code>nvibrant-bin</code></a> AUR package:
       <ul>
@@ -91,12 +87,8 @@ Install from your distro's package manager, it may use the python package at sys
 
   <!-- Nix Flakes -->
   <tr>
-    <td>
-      <img src="https://raw.githubusercontent.com/edent/SuperTinyIcons/refs/heads/master/images/svg/nixos.svg" width="64">
-    </td>
-    <td>
-      Nix Flakes
-    </td>
+    <td><img src="https://raw.githubusercontent.com/edent/SuperTinyIcons/refs/heads/master/images/svg/nixos.svg" width="64"></td>
+    <td>Nix Flakes</td>
     <td>
       Use the <a href="https://github.com/mikaeladev/nix-nvibrant"><code>nix-nvibrant</code></a> flake.
       <br />
@@ -109,12 +101,8 @@ Install from your distro's package manager, it may use the python package at sys
 
   <!-- Fedora -->
   <tr>
-    <td>
-      <img src="https://raw.githubusercontent.com/edent/SuperTinyIcons/refs/heads/master/images/svg/fedora.svg" width="64">
-    </td>
-    <td>
-      Fedora
-    </td>
+    <td><img src="https://raw.githubusercontent.com/edent/SuperTinyIcons/refs/heads/master/images/svg/fedora.svg" width="64"></td>
+    <td>Fedora</td>
     <td>
       Install the <a href="https://copr.fedorainfracloud.org/coprs/starfish/nvibrant"><code>nvibrant</code></a> rpm.
       <br />
@@ -183,7 +171,7 @@ $ ./build/nvibrant 512 512
 Or make a wheel for all drivers at `dist/*`:
 
 ```sh
-$ uv run make.py
+$ uv build --wheel
 ```
 
 ## 🚀 Usage

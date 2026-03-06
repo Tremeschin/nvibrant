@@ -21,13 +21,13 @@ jobs:
           fetch-depth: 0
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
 
       - name: Get version
         run: echo "VERSION=$(uv version --short)" >> $GITHUB_ENV
 
-      - name: Make wheels
-        run: uv run make.py
+      - name: Make wheel
+        run: uv build --wheel
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4

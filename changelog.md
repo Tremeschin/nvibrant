@@ -1,14 +1,13 @@
 
-## ✏️ Staging (unreleased)
+## 📦 v1.2.0
 
-Maintenance release, no changes to the C++ code, usage, or features, only but major packaging changes.
+Maintenance release, support newer drivers, major packaging changes.
 
 After learning a few tricks writing [rustbin](https://github.com/BrokenSource/Rustbin), I'm backtracking into fixing some less than ideal decisions and designs in nvibrant - most notably using [`TemporaryDirectory`](https://docs.python.org/3/library/tempfile.html#tempfile.TemporaryDirectory) for compiling the meson project, including artifacts via hatchling [build hooks](https://hatch.pypa.io/latest/plugins/build-hook/reference/), and properly [tagging wheels](https://packaging.python.org/en/latest/specifications/platform-compatibility-tags/) instead of using `py3-none-any` (which is wrong, binaries are for specific os+arch targets).
 
 **Changes**:
 
-- Update prebuilt binaries up to driver v590.48.01, surprisingly no breaking changes in months!
-- Make experimental `aarch64` linux builds - No guarantees or support, let me know how they go!
+- Update prebuilt binaries up to driver v595.45.04 (breaking changes)
 - Python runtime code is now minimal and doesn't include building infrastructure.
 - Add this `changelog.md` file and reference it on all past releases.
 - Enable [Immutable Releases](https://github.blog/changelog/2025-10-28-immutable-releases-are-now-generally-available/) in the GitHub repository.

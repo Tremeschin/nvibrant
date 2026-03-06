@@ -1,23 +1,15 @@
-"""This file is both a build script and hatchling hook"""
-
-# /// script
-# dependencies = [
-#   "attrs~=25.4",
-#   "hatchling~=1.29",
-# ]
-# ///
-
-import json
 import os
 import subprocess
 import sys
+import sysconfig
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
-import attrs
 from hatchling.builders.hooks.plugin.interface import BuildHookInterface
 
 # ---------------------------------------------------------------------------- #
+
+_workdir = TemporaryDirectory(prefix="nvibrant-")
 
 class Dirs:
 
@@ -30,36 +22,26 @@ class Dirs:
     dist: Path = repository.joinpath("dist")
     """Distribution output directory"""
 
-class Env:
-    target:  str = "TARGET"
-    workdir: str = "WORKDIR"
+    workdir: Path = Path(_workdir.name)
+    """Temporary directory for building"""
 
-@attrs.define
-class Target:
-    wheel: str
-    # cxx: str
+    build: Path = workdir.joinpath("build")
+    """Meson build directory"""
 
 # ---------------------------------------------------------------------------- #
 
 class BuildHook(BuildHookInterface):
     def initialize(self, version: str, build: dict) -> None:
-        try:
-            self.target  = Target(**json.loads(os.environ[Env.target]))
-            self.workdir = Path(os.environ[Env.workdir])
-            self.buildir = self.workdir.joinpath("build")
 
-        # Skip sdist install
-        except KeyError:
-            return None
-
-        # Wheels are platform dependent
-        build["tag"] = f"py3-none-{self.target.wheel}"
-        build["pure_python"] = False
+        # Make wheels strictly for the host platform
+        # https://peps.python.org/pep-0425/#platform-tag
+        build["tag"] = f"py3-none-" + sysconfig.get_platform().replace("-", "_").replace(".", "_")
+        build["pure_python"] = True
 
         # Configure the project
         subprocess.check_call((
             sys.executable, "-m", "mesonbuild.mesonmain",
-            "setup", self.buildir,
+            "setup", Dirs.build,
             "--buildtype", "release",
             "--reconfigure", "--wipe",
         ), cwd=Dirs.repository)
@@ -78,17 +60,18 @@ class BuildHook(BuildHookInterface):
             # Compile an executable
             subprocess.check_call((
                 sys.executable, "-m", "ninja",
-                "-C", self.buildir,
+                "-C", Dirs.build,
             ))
 
-            # Find the compiled binary
-            vendor = self.workdir/f"nvibrant-{driver}"
-            binary = self.buildir.joinpath("nvibrant")
-            binary.chmod(0o755)
-            binary.rename(vendor)
+            # Find and vendor the binary for this version
+            binary = Dirs.build.joinpath("nvibrant")
+            target = Dirs.workdir/f"nvibrant-{driver}"
+            target.write_bytes(binary.read_bytes())
+            target.chmod(0o755)
+            binary.unlink()
 
-            build["force_include"][str(vendor)] = \
-                Path("nvibrant").joinpath("resources", vendor.name)
+            # Include in the wheel
+            build["force_include"][str(target)] = f"nvibrant/resources/{target.name}"
 
         # Revert back main branch
         subprocess.check_call(
@@ -98,17 +81,6 @@ class BuildHook(BuildHookInterface):
 
 # --------------------------------------------------------------------------- #
 
-TARGETS: tuple[Target] = (
-    Target(
-        wheel="manylinux_2_17_x86_64",
-        # cxx="x86-64-linux-gnu-g++",
-    ),
-    # Target(
-    #     wheel="manylinux_2_17_aarch64",
-    #     cxx="aarch64-linux-gnu-g++",
-    # ),
-)
-
 if __name__ == '__main__':
 
     # Intended operation
@@ -117,13 +89,8 @@ if __name__ == '__main__':
         cwd=Dirs.opengpu,
     )
 
-    for target in TARGETS:
-        with TemporaryDirectory(prefix="nvibrant-") as workdir:
-            environ = os.environ.copy()
-            environ[Env.target]  = json.dumps(attrs.asdict(target))
-            environ[Env.workdir] = str(workdir)
-            subprocess.check_call(
-                args=("uv", "build", "--wheel", "-o", Dirs.dist),
-                cwd=Dirs.repository,
-                env=environ,
-            )
+    environ = os.environ.copy()
+    subprocess.check_call(
+        args=("uv", "build", "--wheel", "-o", Dirs.dist),
+        cwd=Dirs.repository,
+    )
