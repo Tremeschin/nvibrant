@@ -35,8 +35,9 @@ class BuildHook(BuildHookInterface):
 
         # Make wheels strictly for the host platform
         # https://peps.python.org/pep-0425/#platform-tag
-        build["tag"] = f"py3-none-" + sysconfig.get_platform().replace("-", "_").replace(".", "_")
-        build["pure_python"] = True
+        _platform = sysconfig.get_platform().replace("-", "_").replace(".", "_")
+        build["tag"] = f"py3-none-" + _platform
+        build["pure_python"] = False
 
         # Configure the project
         subprocess.check_call((

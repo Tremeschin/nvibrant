@@ -1,6 +1,5 @@
 #include <cstring>
 #include <vector>
-#include <string>
 #include <fstream>
 #include <fcntl.h>
 #include <sys/ioctl.h>
@@ -9,7 +8,7 @@
 #include "nvkms-ioctl.h"
 #include "nvkms-api.h"
 
-// ------------------------------------------------------------------------------------------------|
+// ----------------------------------------------------------------------------|
 
 // NvKms ioctl calls must match the driver version
 const char* NVIDIA_DRIVER_VERSION = []() {
@@ -58,7 +57,7 @@ int get_int(int argc, char* argv[], int index, int min, int max, int fallback) {
     return std::max(min, std::min(max, (index < argc) ? atoi(argv[index]) : fallback));
 }
 
-// ------------------------------------------------------------------------------------------------|
+// ----------------------------------------------------------------------------|
 
 int main(int argc, char *argv[]) {
     printf("Driver version: (%s)\n", NVIDIA_DRIVER_VERSION);

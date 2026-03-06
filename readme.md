@@ -50,8 +50,8 @@ $ uvx nvibrant 512 512
 For more stability, pin to a specific version and only update for new features or newer drivers support:
 
 ```sh
-$ python3 -m pip install nvibrant==1.1.0
-$ uvx nvibrant==1.1.0 (args)
+$ python3 -m pip install nvibrant==1.2.0
+$ uvx nvibrant==1.2.0 (args)
 ```
 
 <sup><b>Note:</b> This package is an official release channel for nvibrant</sup>
@@ -168,7 +168,7 @@ $ meson setup --buildtype release ./build && ninja -C ./build
 $ ./build/nvibrant 512 512
 ```
 
-Or make a wheel for all drivers at `dist/*`:
+Or make a wheel for all drivers at `dist/*` for your host platform:
 
 ```sh
 $ uv build --wheel
@@ -228,7 +228,7 @@ WantedBy=default.target
 ```
 
 Enable the service with `systemctl --user enable --now nvibrant.service`
-- You can also pin it to a specific version with `uvx nvibrant==1.1.0 (args)` to have more control
+- You can also pin it to a specific version with `uvx nvibrant==1.2.0 (args)` to have more control
 - Or a C++ binary at `~/.local/bin/nvibrant` and use `ExecStart=%h/.local/bin/nvibrant (args)`
 - Sleeping for a few seconds can prevent racing conditions with the display server starting up
 
@@ -236,23 +236,9 @@ Another option is to use [uv tools](https://docs.astral.sh/uv/concepts/tools/) f
 - Run `uv tool install nvibrant` once (upgrade with `uv tool update nvibrant`)
 - Use `ExecStart=uv tool run nvibrant (args)` in the service
 
-### 🟡 Hybrid Systems
+### 🟡 Laptops, Hybrid Systems
 
-> [!IMPORTANT]
-> I have never used a hybrid system, this is unknown and experimental territory.
-> - Get in touch to improve this section, report good or bad results!
-
-Systems with both integrated and dedicated GPUs (like Intel Iris + NVIDIA) can be tricky, especially laptops.
-
-What often happens is that the iGPU is the primary one that "owns" the displays, with nvidia's frames being passed through it (muxed). This is usually done for power efficiency, only using nvidia on intensive tasks.
-
-- **Desktop** users should be fine, as the displays are driven and connected directly on the nvidia card.
-
-- **Your best chances** are on disabling the iGPU altogether in the BIOS/UEFI, making nvidia the primary and only GPU in laptops systems - _Expect much worse battery life with such!_
-
-Linux has a couple solutions for GPU dispatching - [PRIME](https://wiki.archlinux.org/title/PRIME), [Optimus](https://wiki.archlinux.org/title/NVIDIA_Optimus) and [Bumblebee](https://wiki.archlinux.org/title/Bumblebee). It is currently unknown if any of these allow both nvibrant to interface with the drivers, and have visual changes altogether.
-
-<sup><b>Note:</b> This is different than libvibrant, which uses the Color Transfer Matrix properties of X11 displays, common to both GPUs.</sup>
+Chime in https://github.com/Tremeschin/nvibrant/issues/22
 
 ### 🟢 Dithering
 

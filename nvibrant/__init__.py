@@ -12,8 +12,8 @@ def get_driver() -> Version:
     variable: str = "NVIDIA_DRIVER_VERSION"
 
     # Safety fallback or override with environment variable
-    if (force := os.getenv(variable)):
-        return Version(force)
+    if (override := os.getenv(variable)):
+        return Version(override)
 
     # Seems to be a common and stable path to get the information
     if (file := Path("/sys/module/nvidia/version")).exists():
@@ -27,7 +27,7 @@ def get_versions() -> dict[Version, Path]:
     """Compiled binary versions to their paths"""
     versions = dict()
 
-    # eg "nvibrant-515.43.04"
+    # From build hook, eg. "nvibrant-515.43.04"
     for file in resources.glob("*"):
         version = Version(file.stem.split("-")[1])
         versions[version] = file

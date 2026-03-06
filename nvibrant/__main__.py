@@ -6,24 +6,27 @@ from textwrap import dedent
 import nvibrant
 
 
-def main():
-    (closest, binary) = nvibrant.get_best()
-    current = nvibrant.get_driver()
+def main() -> None:
+    (version, binary) = nvibrant.get_best()
+    driver = nvibrant.get_driver()
 
     # Files are force_include in hatchling instead of defined as shared_scripts,
     # so they are more easily accesible in resources dir (where this file is).
     # However, wheels (zips) doesn't support/might lose xattrs, ensure +x flag
-    os.chmod(binary, 0o755)
+    try:
+        os.chmod(binary, 0o755)
+    except OSError:
+        pass
 
     try:
         subprocess.check_call((binary, *sys.argv[1:]))
     except subprocess.CalledProcessError as call:
-        if (closest != current):
+        if (version != driver):
             print(dedent(f"""
                 {'-'*72}
 
-                Warn: nvibrant doesn't bundle exact binaries for your v{current} driver;
-                  the closest known, previous version v{closest} was used, but failed
+                Warn: nvibrant doesn't bundle exact binaries for your v{driver} driver;
+                  the closest known, previous version v{version} was used, but failed
 
                 You can ignore this if the error above isn't related to ioctl calls.
 

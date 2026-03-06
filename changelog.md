@@ -18,6 +18,7 @@ After learning a few tricks writing [rustbin](https://github.com/BrokenSource/Ru
     - After much thought, **yanking** all previous releases on PyPI is the best course of action, to prevent unsupported platforms from accidentally installing a wrong `py3-none-any` wheel. Users who use pinned versions will notice no changes, as it overrides yanks. _There are **no issues** with older versions_ and you can keep using them normally, pardon my mistakes.
     - Rename internal binaries from `nvibrant-linux-amd64-590-48-01-v1.1.0.bin` to `nvibrant-590.48.01`, as wheels already contain version information, and package managers should vendor target drivers separately.
 - Stop providing standalone `.tar.gz` releases, as [`.whl` are Zips](https://packaging.python.org/en/latest/specifications/binary-distribution-format/) and can easily extract `/nvibrant/resources/*`
+- Downgrade the build script into regular build hook, always making a wheel for the current host (a step towards sdists). Should be buildable in Linux ARM now, feedback welcome.
 
 <small><b>Note</b> that source distributions are intentionally not supported for technical reasons (complex build steps), and that nvidia only has drivers for x86-64 glibc and aarch64 linux (the package is complete).</small>
 
