@@ -48,4 +48,4 @@ jobs:
         with:
           name: Release v${{ env.VERSION }}
           tag_name: v${{ env.VERSION }}
-          files: dist/*
+          files: dist/*.whl
