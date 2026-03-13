@@ -236,11 +236,7 @@ Another option is to use [uv tools](https://docs.astral.sh/uv/concepts/tools/) f
 - Run `uv tool install nvibrant` once (upgrade with `uv tool update nvibrant`)
 - Use `ExecStart=uv tool run nvibrant (args)` in the service
 
-### 🟡 Laptops, Hybrid Systems
-
-Chime in https://github.com/Tremeschin/nvibrant/issues/22
-
-### 🟢 Dithering
+### 🟡 Dithering
 
 Some users have reported issues with dithering causing flickering or artifacts on their displays [(1)](https://github.com/Tremeschin/nvibrant/issues/18) [(2)](https://www.reddit.com/r/linux_gaming/comments/1jmsva0/comment/mkehyuk/), which also lacks a Wayland option to disable in `nvidia-settings`. Fear not, you can change it with nvibrant too!
 
@@ -255,6 +251,27 @@ enum NvKmsDpyAttributeRequestedDitheringValue {
     ...DISABLED = 2,
 };
 ```
+
+For autostarting dithering as seen in [#32 (reply)](https://github.com/Tremeschin/nvibrant/discussions/32#discussioncomment-16060145), you can use:
+
+```ini
+[Unit]
+Description=Apply nvibrant
+After=graphical.target
+
+[Service]
+Type=oneshot
+ExecStartPre=/bin/sleep 5
+ExecStart=/usr/bin/env ATTRIBUTE=vibrance  uvx nvibrant 1023 1023
+ExecStart=/usr/bin/env ATTRIBUTE=dithering uvx nvibrant
+
+[Install]
+WantedBy=default.target
+```
+
+### 🟢 Laptops, Hybrid Systems
+
+Chime in https://github.com/Tremeschin/nvibrant/issues/22
 
 ### 🔵 Multiple GPUs
 
