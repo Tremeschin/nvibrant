@@ -56,6 +56,8 @@ class BuildHook(BuildHookInterface):
 
         build["pure_python"] = False
 
+        # Fixme: Ensure submodule
+
         # Configure the project
         subprocess.check_call((
             sys.executable, "-m", "mesonbuild.mesonmain",
@@ -63,6 +65,12 @@ class BuildHook(BuildHookInterface):
             "--buildtype", "release",
             "--reconfigure", "--wipe",
         ), cwd=Dirs.repository)
+
+        # Intended operation
+        subprocess.check_call(
+            ("git", "config", "advice.detachedHead", "false"),
+            cwd=Dirs.opengpu,
+        )
 
         # Make binaries for all known driver version
         for driver in subprocess.check_output(
@@ -96,19 +104,3 @@ class BuildHook(BuildHookInterface):
             ("git", "checkout", "-f", "main"),
             cwd=Dirs.opengpu
         )
-
-# --------------------------------------------------------------------------- #
-
-if __name__ == '__main__':
-
-    # Intended operation
-    subprocess.check_call(
-        ("git", "config", "advice.detachedHead", "false"),
-        cwd=Dirs.opengpu,
-    )
-
-    environ = os.environ.copy()
-    subprocess.check_call(
-        args=("uv", "build", "--wheel", "-o", Dirs.dist),
-        cwd=Dirs.repository,
-    )
