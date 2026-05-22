@@ -1,4 +1,4 @@
-name: make-website
+name: website
 on:
   workflow_dispatch:
   push:
@@ -18,6 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: astral-sh/setup-uv@v7
+      - run:  ln readme.md website/index.md
       - run:  uvx zensical build
       - run:  mv site _site
       - uses: actions/upload-pages-artifact@v4
