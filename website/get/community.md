@@ -13,4 +13,6 @@ Here are some derivative work or integrations made by the community!
 
 A Terminal User Interface for nvibrant similar to alsamixer, with persistent settings, easy autostart service creation, live changes preview. Made by [@enrialonso](https://github.com/enrialonso/) • [repository](https://github.com/enrialonso/nvibrant-tui).
 
-<img src="https://raw.githubusercontent.com/enrialonso/nvibrant-tui/refs/heads/main/assets/demo.gif">
+<a href="https://github.com/enrialonso/nvibrant-tui">
+    <img src="https://raw.githubusercontent.com/enrialonso/nvibrant-tui/refs/heads/main/assets/demo.gif">
+</a>
