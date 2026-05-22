@@ -1,0 +1,15 @@
+.md-main__inner {
+  margin-top: 0 !important;
+}
+
+.tabbed-labels--linked label {
+  text-align: center;
+  flex: 1;
+}
+
+.md-typeset .admonition-title {
+  font-weight: 450 !important;
+}
+.filename {
+  font-weight: 450 !important;
+}

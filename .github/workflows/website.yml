@@ -1,0 +1,24 @@
+name: make-website
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "website/**"
+
+permissions:
+  id-token: write
+  contents: read
+  pages: write
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+    steps:
+      - uses: actions/checkout@v6
+      - uses: astral-sh/setup-uv@v7
+      - run:  uvx zensical build
+      - run:  mv site _site
+      - uses: actions/upload-pages-artifact@v4
+      - uses: actions/deploy-pages@v4

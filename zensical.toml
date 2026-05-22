@@ -1,0 +1,77 @@
+[project]
+site_name = "nvibrant"
+site_description = "🟢 Nvidia Digital Vibrance on Wayland "
+site_author = "Tremeschin"
+site_url  = "https://nvibrant.tremeschin.com/"
+repo_url  = "https://github.com/Tremeschin/nvibrant/"
+repo_name = "Tremeschin/nvibrant"
+copyright = "&copy; CC BY-SA 4.0, <a href='https://github.com/Tremeschin/'>Tremeschin</a> 🇧🇷"
+extra_css = ["extra.css"]
+docs_dir  = "website"
+nav = [
+  {Origin = "https://tremeschin.com"},
+  {Home = [
+    "index.md",
+    "about/changelog.md",
+  ]},
+  {Installation = [
+    "get/index.md",
+    {Packages = [
+      "get/pypi.md",
+      "get/distro.md",
+    ]},
+    {Origins = [
+      "get/source.md",
+      "get/actions.md",
+    ]},
+    {Others = [
+      "get/community.md",
+    ]},
+  ]},
+  {Documentation = [
+    "docs/vibrance.md",
+    "docs/dithering.md",
+    "docs/autostart.md",
+    "docs/multigpu.md",
+    "docs/laptop.md",
+  ]},
+  {Questions = [
+    "faq.md",
+  ]}
+]
+
+[project.theme]
+features = [
+  "content.code.copy",
+  "content.footnote.tooltips",
+  "content.tabs.link",
+  "navigation.indexes",
+  "navigation.footer",
+  "navigation.sections",
+  "navigation.tabs",
+  "navigation.top",
+  "search.highlight",
+]
+
+[project.theme.icon]
+logo = "octicons/chevron-right-16"
+
+[[project.theme.palette]]
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
+media       = "(prefers-color-scheme: light)"
+scheme      = "default"
+
+[[project.theme.palette]]
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to light mode"
+media       = "(prefers-color-scheme: dark)"
+scheme      = "slate"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/github"
+link = "https://github.com/Tremeschin"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/discord"
+link = "https://discord.gg/KjqvcYwRHm"

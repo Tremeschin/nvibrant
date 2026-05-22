@@ -74,7 +74,8 @@ class BuildHook(BuildHookInterface):
 
         # Make binaries for all known driver version
         for driver in subprocess.check_output(
-            ("git", "tag"), cwd=Dirs.opengpu
+            args=("git", "tag"),
+            cwd=Dirs.opengpu
         ).decode().strip().splitlines():
 
             # Checkout driver version
