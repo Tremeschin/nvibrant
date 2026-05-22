@@ -28,7 +28,7 @@ This project uses `nvidia-modeset` and `nvkms` headers found at [nvidia/open-gpu
 
 <div align="center">
   <a href="https://nvibrant.tremeschin.com/">
-    <img src="https://github.com/user-attachments/assets/f74653a0-a62d-4911-b23b-f5d0ea03007e"/>
+    <img src="https://github.com/user-attachments/assets/a84ddf9b-b86a-4ce0-89fb-b5b76b14a65c"/>
   </a>
   <i>
     Visit the documentation at
