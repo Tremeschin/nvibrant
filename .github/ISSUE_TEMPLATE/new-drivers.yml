@@ -1,0 +1,41 @@
+name: Ask a patch release
+title: "[Driver]: "
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Follow this checklist:
+        https://nvibrant.tremeschin.com/faq/#new-drivers
+
+  - type: input
+    id: driver
+    attributes:
+      label: Driver version
+      description: Output of `cat /sys/module/nvidia/version`
+    validations:
+      required: true
+
+  - type: dropdown
+    id: status
+    attributes:
+      label: Does git main nvibrant builds..
+      options:
+        - Compile and work normally
+        - Compile but fail at runtime
+        - Fail to compile (open-gpu related)
+    validations:
+      required: true
+
+  - type: textarea
+    id: output
+    attributes:
+      label: Terminal output
+      description: Paste build hook file hashes, compilation errors, or runtime errors here to show the breaking changes origin
+      render: shell
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Description
+      placeholder: Optional relevant information

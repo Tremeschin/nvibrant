@@ -1,0 +1,6 @@
+blank_issues_enabled: true
+
+contact_links:
+  - name: Not working in newer drivers?
+    url: https://nvibrant.tremeschin.com/faq/#new-drivers
+    about: Follow this checklist for asking a patch release!
