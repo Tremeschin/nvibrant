@@ -5,7 +5,7 @@ GitHub = "https://github.com/Tremeschin/nvibrant"
 name        = "nvibrant"
 description = "🟢 Nvidia Digital Vibrance on Wayland"
 authors     = [{name="Tremeschin"}]
-version     = "1.2.0"
+version     = "1.2.1"
 readme      = "readme.md"
 license     = "GPL-3.0"
 requires-python = ">=3.10"

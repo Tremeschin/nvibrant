@@ -107,7 +107,7 @@ class BuildHook(BuildHookInterface):
 
             # Include in the wheel
             build_data["force_include"][str(target)] = f"nvibrant/resources/{target.name}"
-            hashes.setdefault(hashlib.sha256(target.read_bytes()).hexdigest(), driver)
+            hashes.setdefault(hashlib.md5(target.read_bytes()).hexdigest(), driver)
 
         # Revert back main branch
         subprocess.check_call(

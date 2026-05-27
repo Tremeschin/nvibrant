@@ -21,8 +21,7 @@ Follow these steps for a checklist in asking for a patch release:
 
 <p/>
 
-- [x] 2. Have you rebooted since the last driver update?
-    - Mostly a sanity check, previous kernel modules may desync (?)
+- [x] 2. Have you rebooted since the last driver update? <small>(mostly a sanity check, just in case..)</small>
 
 <p/>
 
@@ -31,11 +30,18 @@ Follow these steps for a checklist in asking for a patch release:
 
 <p/>
 
-- [x] 4. Make a [Build From Source](../get/source.md#wheel) using `uv build --wheel`, the hatchling build script automatically checkouts open-gpu to main and prints unique file hashes for all known drivers.
+- [x] 4. Make a [Build From Source](../get/source.md#wheel) using `uv build --wheel`, the hatchling build script automatically checkouts open-gpu to main and prints unique file hashes for all drivers at the end.
     - Compilation errors regarding open-gpu structs are a strong sign for breaking changes.
     - Does any new hash values shows up for a driver `<=` than yours?
 
--> Whether all of the above checks out, specially a new hash is seen, either [Open an Issue](https://github.com/Tremeschin/nvibrant/issues/) in the repository or let me know in [Discord](https://discord.com/invite/KjqvcYwRHm) for a patch release!
+<p/>
+
+- [x] 5. Shall it compile without errors, test whether it works with the new driver without any code changes (simple recompilation), or would need further investigation:
+    ```
+    uvx --with dist/nvibrant-*.whl nvibrant (...)
+    ```
+
+-> Whether all of the above checks out, specially a new hash is seen, either [Open an Issue](https://github.com/Tremeschin/nvibrant/issues/) in the repository or let me know in [Discord](https://discord.com/invite/KjqvcYwRHm) for a patch release and relevant outputs!
 
 <small><b>Note:</b> Arch may take a while for new drivers to be packaged, your proactive help is essential for testing!</small>
 

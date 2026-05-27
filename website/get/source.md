@@ -11,7 +11,7 @@ tags:
 Clone the repository with latest `open-gpu` submodule changes:
 
 ```sh linenums="1"
-git clone https://github.com/Tremeschin/nvibrant
+git clone https://github.com/Tremeschin/nvibrant && cd nvibrant
 git submodule update --init --remote
 ```
 

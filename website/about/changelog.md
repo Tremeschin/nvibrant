@@ -15,6 +15,7 @@ tags:
 !!! quote ""
     - Update GitHub Actions workflow to `ubuntu-24.04` for newer GCC versions [#37](https://github.com/Tremeschin/nvibrant/issues/37)
     - Port readme contents into a website made with [Zensical](https://zensical.org/docs/get-started/)
+    - Update prebuilt binaries up to driver v610.43.02 (breaking changes)
 
 ### 📦 v1.2.0 <small>Mar 06, 2026</small> {#v1.2.0}
 
