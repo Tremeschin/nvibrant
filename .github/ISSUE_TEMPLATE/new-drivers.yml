@@ -17,6 +17,14 @@ body:
     validations:
       required: true
 
+  - type: input
+    id: distro
+    attributes:
+      label: Linux distribution
+      description: Just curious on which rolls drivers first
+    validations:
+      required: true
+
   - type: dropdown
     id: status
     attributes:
