@@ -1,3 +1,4 @@
+import hashlib
 import os
 import subprocess
 import sys
@@ -31,7 +32,7 @@ class Dirs:
 # ---------------------------------------------------------------------------- #
 
 class BuildHook(BuildHookInterface):
-    def initialize(self, version: str, build: dict) -> None:
+    def initialize(self, version: str, build_data: dict) -> None:
 
         # Make wheels strictly for the host platform
         # https://packaging.python.org/en/latest/specifications/platform-compatibility-tags/
@@ -49,14 +50,18 @@ class BuildHook(BuildHookInterface):
                 if arch not in tag.platform:
                     continue
                 if "manylinux" in tag.platform:
-                    build["tag"] = f"py3-none-manylinux_2_17_{arch}"
+                    build_data["tag"] = f"py3-none-manylinux_2_17_{arch}"
                 elif "musllinux" in tag.platform:
-                    build["tag"] = f"py3-none-musllinux_1_1_{arch}"
+                    build_data["tag"] = f"py3-none-musllinux_1_1_{arch}"
             break
 
-        build["pure_python"] = False
+        build_data["pure_python"] = False
 
-        # Fixme: Ensure submodule
+        # Ensure submodule on git main
+        subprocess.check_call(
+            ("git", "submodule", "update", "--init", "--remote"),
+            cwd=Dirs.repository,
+        )
 
         # Configure the project
         subprocess.check_call((
@@ -72,11 +77,14 @@ class BuildHook(BuildHookInterface):
             cwd=Dirs.opengpu,
         )
 
+        # Keep track of breaking changes
+        hashes: dict[str, str] = dict()
+
         # Make binaries for all known driver version
-        for driver in subprocess.check_output(
+        for driver in sorted(subprocess.check_output(
             args=("git", "tag"),
             cwd=Dirs.opengpu
-        ).decode().strip().splitlines():
+        ).decode().strip().splitlines()):
 
             # Checkout driver version
             subprocess.check_call(
@@ -98,10 +106,17 @@ class BuildHook(BuildHookInterface):
             binary.unlink()
 
             # Include in the wheel
-            build["force_include"][str(target)] = f"nvibrant/resources/{target.name}"
+            build_data["force_include"][str(target)] = f"nvibrant/resources/{target.name}"
+            hashes.setdefault(hashlib.sha256(target.read_bytes()).hexdigest(), driver)
 
         # Revert back main branch
         subprocess.check_call(
             ("git", "checkout", "-f", "main"),
             cwd=Dirs.opengpu
         )
+
+        print("\nBreaking changes across driver versions:")
+
+        for hashsum, driver in hashes.items():
+            print(f"• {hashsum}  {driver}")
+        print()

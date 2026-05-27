@@ -33,7 +33,7 @@ ninja -C ./build
 ./build/nvibrant 512 512
 ```
 
-## Python Utility
+## Wheel {#wheel}
 
 Or make a wheel for all drivers at `dist/*` for your host platform:
 

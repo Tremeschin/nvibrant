@@ -12,7 +12,7 @@ tags:
 
 Follow these steps for a checklist in asking for a patch release:
 
-- [x] 1. Has your current driver been recently released (~1 week) and is a new major version?
+- [x] 1. Has your current driver been recently released (~2 weeks) and is a new major version?
     - Check drivers in [nvidia/open-gpu-kernel-modules](https://github.com/NVIDIA/open-gpu-kernel-modules/tags) repository tags.
     - Check current driver with `cat /proc/driver/nvidia/version`
     - The first number is the major version (590.xx, 595.xx, etc).
@@ -22,18 +22,17 @@ Follow these steps for a checklist in asking for a patch release:
 <p/>
 
 - [x] 2. Have you rebooted since the last driver update?
-    - Mismatches on what the live `/dev/nvidia-modeset` expects and what `/sys/module/nvidia/version` says can fail even on compatible major versions.
+    - Mostly a sanity check, previous kernel modules may desync (?)
 
 <p/>
 
 - [x] 3. Are you using the latest nvibrant release?
-    - Check [GitHub](https://github.com/Tremeschin/nvibrant/releases), [PyPI](https://pypi.org/project/nvibrant/#history), your package manager, or locally built files.
+    - Check [GitHub](https://github.com/Tremeschin/nvibrant/releases), [PyPI](https://pypi.org/project/nvibrant/#history), your package manager, locally built files, etc.
 
 <p/>
 
-- [x] 4. Make a [Build From Source](../get/source.md), you can either only build the C++ part for the latest driver and test, or optimally build a local wheel for all new drivers files.
+- [x] 4. Make a [Build From Source](../get/source.md#wheel) using `uv build --wheel`, the hatchling build script automatically checkouts open-gpu to main and prints unique file hashes for all known drivers.
     - Compilation errors regarding open-gpu structs are a strong sign for breaking changes.
-    - Unzip and run the same commands seen in [#driver-compatibility](#driver-compatibility) for `dist/*.whl`
     - Does any new hash values shows up for a driver `<=` than yours?
 
 -> Whether all of the above checks out, specially a new hash is seen, either [Open an Issue](https://github.com/Tremeschin/nvibrant/issues/) in the repository or let me know in [Discord](https://discord.com/invite/KjqvcYwRHm) for a patch release!
@@ -51,7 +50,7 @@ There is some level of compatibility across different nvibrant and driver versio
 [^struct-changes]: For example, the removal of SLI options in 590.xx as Pascal (GTX 10xx) support was dropped happened to be a field in the GPU querying structures nvibrant uses [#31](https://github.com/Tremeschin/nvibrant/issues/31#issuecomment-4012908896), or random changes [#5](https://github.com/Tremeschin/nvibrant/issues/5#issuecomment-2814513826)
 
 ```sh
-$ unzip nvibrant-1.2.0-py3-none-manylinux_2_17_x86_64.whl
+$ unzip nvibrant-*-py3-none-manylinux_2_17_x86_64.whl
 $ md5sum nvibrant/resources/* | /bin/uniq -w32
 ```
 
