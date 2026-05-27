@@ -1,12 +1,13 @@
-name: Ask a patch release
+name: Not working in newer drivers?
+description: Ask for a patch release here!
 title: "[Driver]: "
 
 body:
   - type: markdown
     attributes:
       value: |
-        Follow this checklist:
-        https://nvibrant.tremeschin.com/faq/#new-drivers
+        > [!IMPORTANT]
+        > Follow this checklist: https://nvibrant.tremeschin.com/faq/#new-drivers
 
   - type: input
     id: driver
