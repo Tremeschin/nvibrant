@@ -1,6 +1,6 @@
 name: Not working in newer drivers?
 description: Ask for a patch release here!
-title: "[Driver]: "
+title: "[Patch]: New driver v0.0.0"
 
 body:
   - type: markdown
@@ -12,7 +12,7 @@ body:
   - type: input
     id: driver
     attributes:
-      label: Driver version
+      label: Driver version (replace on title too)
       description: Output of `cat /sys/module/nvidia/version`
     validations:
       required: true
@@ -28,11 +28,11 @@ body:
   - type: dropdown
     id: status
     attributes:
-      label: Does git main nvibrant builds..
+      label: Does nvibrant git main local builds..
       options:
-        - Compile and work normally
-        - Compile but fail at runtime
-        - Fail to compile (open-gpu related)
+        - Compiles and works normally
+        - Compiles but fails at runtime
+        - Fails to compile (open-gpu related)
     validations:
       required: true
 
@@ -40,7 +40,11 @@ body:
     id: output
     attributes:
       label: Terminal output
-      description: Paste build hook file hashes, compilation errors, or runtime errors here to show the breaking changes origin
+      description: |
+        Paste applicable logs showing breaking changes, such as:
+        - Files hash to driver version from `uv build` logs
+        - Compilation errors related to open-gpu structs
+        - No need for the "doesn't bundle" long warning
       render: shell
 
   - type: textarea

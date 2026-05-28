@@ -30,7 +30,7 @@ WantedBy=default.target
 Change values, enable the service with `systemctl --user enable --now nvibrant.service`
 
 !!! tip "Tips"
-    - You can pin it to a specific version with `uvx nvibrant==1.2.0 (args)` to have more control/security
+    - You can pin it to a specific version with `uvx nvibrant==1.2.1 (args)` to have more control/security
     - Local binary at `~/.local/bin/nvibrant` and use `ExecStart=%h/.local/bin/nvibrant (args)`
     - Sleeping for a few seconds can prevent racing conditions with the display server starting up
 

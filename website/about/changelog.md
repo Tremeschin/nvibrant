@@ -10,11 +10,11 @@ tags:
 !!! success "This project is complete and stable, no actions are needed unless a driver update breaks it!"
     - Don't panic when it breaks, follow this [FAQ](../faq.md#new-drivers) section for a workaround and asking a patch release.
 
-### 📦 v1.2.1 <small>Unreleased</small> {#v1.2.1}
+### 📦 v1.2.1 <small>May 28, 2026</small> {#v1.2.1}
 
 !!! quote ""
-    - Update GitHub Actions workflow to `ubuntu-24.04` for newer GCC versions [#37](https://github.com/Tremeschin/nvibrant/issues/37)
     - Port readme contents into a website made with [Zensical](https://zensical.org/docs/get-started/)
+    - Update GitHub Actions workflow to `ubuntu-24.04` for newer GCC versions [#37](https://github.com/Tremeschin/nvibrant/issues/37)
     - Update prebuilt binaries up to driver v610.43.02 (breaking changes) [#39](https://github.com/Tremeschin/nvibrant/issues/39)
 
 ### 📦 v1.2.0 <small>Mar 06, 2026</small> {#v1.2.0}
