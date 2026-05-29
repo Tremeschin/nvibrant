@@ -21,16 +21,15 @@ Follow these steps for a checklist in asking for a patch release:
 
 <p/>
 
-- [x] 2. Have you rebooted since the last driver update? <small>(mostly a sanity check, just in case..)</small>
+- [x] 2. Has it been reported on GitHub? [Check here](https://github.com/Tremeschin/nvibrant/issues?q=is:issue), it could already be solved, else chime in!
 
 <p/>
 
-- [x] 3. Are you using the latest nvibrant release?
-    - Check [GitHub](https://github.com/Tremeschin/nvibrant/releases), [PyPI](https://pypi.org/project/nvibrant/#history), your package manager, locally built files, etc.
+- [x] 3. Are you using the latest nvibrant release? Check [GitHub](https://github.com/Tremeschin/nvibrant/releases), [PyPI](https://pypi.org/project/nvibrant/#history), where you run it, etc.
 
 <p/>
 
-- [x] 4. Make a [Build From Source](../get/source.md#wheel) using `uv build --wheel`, the hatchling build script automatically checkouts open-gpu to main and prints unique file hashes for all drivers at the end.
+- [x] 4. Make a [Build From Source](../get/source.md#wheel) using `uv build --wheel`, the hatchling build script automatically checkouts open-gpu to main and prints file hashes cutoffs for all drivers.
     - Compilation errors regarding open-gpu structs are a strong sign for breaking changes.
     - Does any new hash values shows up for a driver `<=` than yours?
 
@@ -41,7 +40,7 @@ Follow these steps for a checklist in asking for a patch release:
     uvx --with dist/nvibrant-*.whl nvibrant (...)
     ```
 
--> Whether all of the above checks out, specially a new hash is seen, either [Open an Issue](https://github.com/Tremeschin/nvibrant/issues/) in the repository or let me know in [Discord](https://discord.com/invite/KjqvcYwRHm) for a patch release and relevant outputs!
+-> Whether all of the above checks out, specially a new hash is seen, [Open an Issue](https://github.com/Tremeschin/nvibrant/issues/) in the repository using this [template](https://github.com/Tremeschin/nvibrant/issues/new?template=new-drivers.yml) for a patch release and add relevant outputs!
 
 <small><b>Note:</b> Arch may take a while for new drivers to be packaged, your proactive help is essential for testing!</small>
 
