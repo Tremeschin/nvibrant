@@ -17,7 +17,7 @@ Following the concepts of [uv/tools](https://docs.astral.sh/uv/concepts/tools/),
 uvx nvibrant (args)
 ```
 
-For more stability and/or safety, pin to a specific [version](../about/changelog.md):
+For more stability and/or safety, pin to a specific [version](../changelog.md):
 
 ```linenums="1"
 uvx nvibrant==1.2.1 (args)

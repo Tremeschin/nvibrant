@@ -12,9 +12,9 @@ nav = [
   {Origin = "https://tremeschin.com"},
   {Home = [
     "index.md",
-    "about/changelog.md",
+    "changelog.md",
   ]},
-  {Installation = [
+  {Get = [
     "get/index.md",
     {Packages = [
       "get/pypi.md",
@@ -35,7 +35,7 @@ nav = [
     "docs/multigpu.md",
     "docs/laptop.md",
   ]},
-  {Questions = [
+  {FAQ = [
     "faq.md",
   ]}
 ]

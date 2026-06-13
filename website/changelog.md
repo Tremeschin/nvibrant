@@ -8,7 +8,14 @@ tags:
 ---
 
 !!! success "This project is complete and stable, no actions are needed unless a driver update breaks it!"
-    - Don't panic when it breaks, follow this [FAQ](../faq.md#new-drivers) section for a workaround and asking a patch release.
+    - Don't panic when it breaks, follow this [FAQ](./faq.md#new-drivers) section for a workaround and asking a patch release.
+
+### :package: v1.2.2 <small>Staging</small> {#v1.2.2}
+
+!!! quote ""
+    - Support setting the [Dithering Mode](./docs/dithering.md#mode) requested in [#18 (comment)](https://github.com/Tremeschin/nvibrant/issues/18#issuecomment-4654683807)
+    - Support setting the [Dithering Depth](./docs/dithering.md#depth) requested in [#18 (comment)](https://github.com/Tremeschin/nvibrant/issues/18#issuecomment-4654683807)
+    - Simplify website path `/about/changelog` to just `/changelog`
 
 ### :package: v1.2.1 <small>May 28, 2026</small> {#v1.2.1}
 
