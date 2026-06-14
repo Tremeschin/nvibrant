@@ -28,15 +28,15 @@ nav = [
       "get/community.md",
     ]},
   ]},
-  {Documentation = [
+  {Docs = [
     "docs/vibrance.md",
     "docs/dithering.md",
     "docs/autostart.md",
     "docs/multigpu.md",
     "docs/laptop.md",
   ]},
-  {FAQ = [
-    "faq.md",
+  {Help = [
+    "help.md",
   ]}
 ]
 
