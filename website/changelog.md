@@ -8,7 +8,7 @@ tags:
 ---
 
 !!! success "This project is complete and stable, no actions are needed unless a driver update breaks it!"
-    - Don't panic when it breaks, follow this [FAQ](./faq.md#new-drivers) section for a workaround and asking a patch release.
+    - Don't panic when it breaks, follow this [FAQ](./help.md#new-drivers) section for a workaround and asking a patch release.
 
 ### :package: v1.2.2 <small>Staging</small> {#v1.2.2}
 

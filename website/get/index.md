@@ -11,7 +11,7 @@ tags:
 
     - For supporting transitional periods, older drivers (LTS, distros) and [GPUs](https://archlinux.org/news/nvidia-590-driver-drops-pascal-support-main-packages-switch-to-open-kernel-modules/), a solution is to make and bundle files for all [known drivers](https://github.com/NVIDIA/open-gpu-kernel-modules/tags) at release time, and chose a best one [dynamically](https://github.com/Tremeschin/nvibrant/blob/21da533faa675f90d2ee92bc4b472fc54220c1a7/nvibrant/__init__.py#L26-L47) at runtime.
 
-    - **Don't panic** when it breaks, follow this [FAQ](../faq.md#new-drivers) section for a workaround and asking a patch release.
+    - **Don't panic** when it breaks, follow this [FAQ](../help.md#new-drivers) section for a workaround and asking a patch release.
 
 There's multiple ways to get nvibrant, pick your choice:
 
