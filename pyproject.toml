@@ -1,17 +1,17 @@
-[project.urls]
-GitHub = "https://github.com/Tremeschin/nvibrant"
-
 [project]
 name        = "nvibrant"
 description = "🟢 Nvidia Digital Vibrance on Wayland"
 authors     = [{name="Tremeschin"}]
 version     = "1.2.1"
 readme      = "readme.md"
-license     = "GPL-3.0"
+license     = "MIT"
 requires-python = ">=3.10"
 dependencies = [
     "packaging",
 ]
+
+[project.urls]
+GitHub = "https://github.com/Tremeschin/nvibrant"
 
 [project.scripts]
 nvibrant = "nvibrant.__main__:main"

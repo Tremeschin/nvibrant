@@ -16,6 +16,9 @@ tags:
     - Support setting the [Dithering Mode](./docs/dithering.md#mode) requested in [#18 (comment)](https://github.com/Tremeschin/nvibrant/issues/18#issuecomment-4654683807)
     - Support setting the [Dithering Depth](./docs/dithering.md#depth) requested in [#18 (comment)](https://github.com/Tremeschin/nvibrant/issues/18#issuecomment-4654683807)
     - Simplify website path `/about/changelog` to just `/changelog`
+    - Change project license from GPL-3.0 to MIT[^mit]
+
+[^mit]: I had chosen GPL in a hurry and by habit. Spiritually, nvibrant should be a small, simple project. :slight_smile:
 
 ### :package: v1.2.1 <small>May 28, 2026</small> {#v1.2.1}
 
