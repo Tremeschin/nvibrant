@@ -32,8 +32,8 @@ nav = [
     "docs/vibrance.md",
     "docs/dithering.md",
     "docs/autostart.md",
-    "docs/multigpu.md",
     "docs/laptop.md",
+    "docs/multigpu.md",
   ]},
   {Help = [
     "help.md",
@@ -55,6 +55,10 @@ features = [
 
 [project.theme.icon]
 logo = "octicons/chevron-right-16"
+tag.default = "material/tag"
+
+[project.extra.tags]
+dummy = "key"
 
 [[project.theme.palette]]
 toggle.icon = "lucide/sun"

@@ -11,7 +11,7 @@ Some users have issues with dithering causing flickering or artifacts on their d
 
 Since nvibrant already sets up most of the work, I also included options for it :slight_smile:
 
-## Value
+## State
 
 For enabling or disabling dithering in monitors, use the following numbers in args:
 
@@ -36,7 +36,7 @@ $ ATTRIBUTE=dithering nvibrant 0 2 2 1
 $ ATTRIBUTE=dithering nvibrant 1 1 1 1
 ```
 
-### Mode
+## Mode
 
 !!! warning "Only in [git main](../get/source.md) builds, next patch release will include this option."
 
@@ -57,7 +57,7 @@ enum NvKmsDpyAttributeCurrentDitheringModeValue {
 
 Default value in nvibrant is (0), unsure about the driver.
 
-### Depth
+## Depth
 
 !!! warning "Only in [git main](../get/source.md) builds, next patch release will include this option."
 

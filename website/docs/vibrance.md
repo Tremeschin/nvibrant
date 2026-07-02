@@ -7,8 +7,11 @@ tags:
 - Vibrance
 ---
 
-!!! tip ""
-    Vibrance levels are numbers from -1024 to 1023 that determines the intensity of the effect - zero being the default at boot, -1024 grayscale, and 1023 max saturation (200%).
+## Intensity
+
+Vibrance levels are numbers from -1024 to 1023 that determines the intensity of the effect - zero being the default at boot, -1024 grayscale, and 1023 max saturation (200%).
+
+## Usage
 
 Values are passed as arguments to the `nvibrant` binary, matching the _order of physical ports_ the nvidia driver reports (may differ from the video server):
 
