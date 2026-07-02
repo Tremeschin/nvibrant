@@ -10,26 +10,26 @@ tags:
 
 > **Don't panic!** this is inevitable, learn about why in [#driver-compatibility](#driver-compatibility)
 
-Follow these steps for a checklist in asking for a patch release:
+Follow these steps for a checklist in asking a new patch release and troubleshooting:
 
-- [x] 1. Has your current driver been recently released (~2 weeks) and is a new major version?
+- [x] 1. Are you using the latest nvibrant release? Check the [:material-file-document-edit: Changelog](./changelog.md), update it, etc.
+
+<p/>
+
+- [x] 2. Has it been reported on GitHub? [Check here](https://github.com/Tremeschin/nvibrant/issues?q=is:issue), add a :thumbs_up: to confirm, read the messages.
+
+<p/>
+
+- [x] 3. Has your current driver been recently released (~2 weeks) and is a new major version?
     - Check drivers in [nvidia/open-gpu-kernel-modules](https://github.com/NVIDIA/open-gpu-kernel-modules/tags) repository tags.
-    - Check current driver with `cat /proc/driver/nvidia/version`
+    - Check current driver with `cat /sys/module/nvidia/version`
     - The first number is the major version (590.xx, 595.xx, etc).
 
     <small><b>Whether</b> that's not the case, follow [#common-issues](#common-issues)</small>
 
 <p/>
 
-- [x] 2. Has it been reported on GitHub? [Check here](https://github.com/Tremeschin/nvibrant/issues?q=is:issue), it could already be solved, else chime in!
-
-<p/>
-
-- [x] 3. Are you using the latest nvibrant release? Check [GitHub](https://github.com/Tremeschin/nvibrant/releases), [PyPI](https://pypi.org/project/nvibrant/#history), where you run it, etc.
-
-<p/>
-
-- [x] 4. Make a [Build From Source](../get/source.md#wheel) using `uv build --wheel`, the hatchling build script automatically checkouts open-gpu to main and prints file hashes cutoffs for all drivers.
+- [x] 4. Make a [:material-git: Source Build](../get/source.md#wheel) using `uv build --wheel`, the hatchling build script automatically checkouts open-gpu to main and prints file hashes cutoffs for all drivers.
     - Compilation errors regarding open-gpu structs are a strong sign for breaking changes.
     - Does any new hash values shows up for a driver `<=` than yours?
 
