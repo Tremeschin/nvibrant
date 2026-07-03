@@ -5,8 +5,6 @@ site_author = "Tremeschin"
 site_url  = "https://nvibrant.tremeschin.com/"
 repo_url  = "https://github.com/Tremeschin/nvibrant/"
 repo_name = "Tremeschin/nvibrant"
-copyright = "&copy; CC BY-SA 4.0, <a href='https://github.com/Tremeschin/'>Tremeschin</a> 🇧🇷"
-extra_css = ["extra.css"]
 docs_dir  = "website"
 nav = [
   {Origin = "https://tremeschin.com"},
