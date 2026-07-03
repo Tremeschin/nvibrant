@@ -13,7 +13,7 @@ tags:
 
 ## :simple-astral: With uv {#uv}
 
-Have [astral-sh/uv](https://docs.astral.sh/uv/) installed at your preference.
+Have [astral-sh/uv](https://docs.astral.sh/uv/) installed - a modern python manager and runner.
 
 Following the concepts of [uv/tools](https://docs.astral.sh/uv/concepts/tools/), you can run nvibrant from an ephemeral environment:
 
