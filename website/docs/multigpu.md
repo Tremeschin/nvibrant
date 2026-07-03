@@ -1,6 +1,8 @@
 ---
 title: Multi GPU
 icon: material/inbox-multiple-outline
+description: Configure Digital Vibrance on Wayland in systems with multiple GPUs
+  by using environment variables to target an specific card in nvibrant.
 tags:
 - Documentation
 - Quickstart

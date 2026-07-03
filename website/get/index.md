@@ -1,5 +1,7 @@
 ---
 title: Installation
+description: Learn how to install nvibrant via the official PyPI repository, community
+  package managers, prebuilt GitHub Actions builds, or by compiling from source code.
 tags:
 - Installation
 - Quickstart

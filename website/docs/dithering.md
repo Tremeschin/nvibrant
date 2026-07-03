@@ -1,6 +1,8 @@
 ---
 title: Dithering
 icon: material/grain
+description: Configure NVIDIA display dithering state, mode selection (Dynamic 2x2,
+  Static 2x2, Temporal), and bit depth settings using the nvibrant tool on Wayland.
 tags:
 - Documentation
 - Quickstart

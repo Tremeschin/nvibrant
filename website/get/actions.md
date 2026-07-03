@@ -1,6 +1,8 @@
 ---
 title: Workflow Builds
 icon: octicons/workflow-16
+description: Download nvibrant python wheels from GitHub Actions releases, or optionally
+  extract the pre-compiled C++ binaries for running them manually.
 tags:
 - Install
 - Prebuilt

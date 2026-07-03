@@ -1,6 +1,8 @@
 ---
 title: Changelog
 icon: material/file-document-edit
+description: Changelog page for the nvibrant project. Detailed history of software
+  updates, feature improvements, infrastructure changes, and driver support milestones.
 tags:
 - About
 - Changelog

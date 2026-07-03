@@ -1,6 +1,8 @@
 ---
 title: General
 icon: octicons/package-16
+description: Troubleshoot nvibrant issues including driver version mismatches, ioctl errors, and
+  compatibility with new NVIDIA drivers using diagnostic checklists and common fixes.
 tags:
 - Questions
 - Issues

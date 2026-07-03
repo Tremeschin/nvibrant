@@ -1,6 +1,8 @@
 ---
 title: Python Registry
 icon: material/language-python
+description: Official Python release channel for nvibrant, providing the PyPI package
+  with bundled files for all nvidia drivers, installation using uv or pip.
 tags:
 - Install
 - Python
@@ -10,6 +12,8 @@ tags:
 !!! success "This is an official release channel for nvibrant"
 
 ## :simple-astral: With uv {#uv}
+
+Have [astral-sh/uv](https://docs.astral.sh/uv/) installed at your preference.
 
 Following the concepts of [uv/tools](https://docs.astral.sh/uv/concepts/tools/), you can run nvibrant from an ephemeral environment:
 

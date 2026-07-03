@@ -1,6 +1,8 @@
 ---
 title: Autostart
 icon: octicons/rocket-16
+description: Configure the automatic startup of nvibrant using a Systemd user service,
+  including instructions for settings that require environment variables.
 tags:
 - Documentation
 - Quickstart

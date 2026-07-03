@@ -1,6 +1,8 @@
 ---
 title: Community Work
 icon: material/recycle
+description: Community tools and integrations for nvibrant, like nvibrant-tui terminal
+  interface with persistent settings and live preview features.
 tags:
 - Community
 ---

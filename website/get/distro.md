@@ -1,6 +1,8 @@
 ---
 title: Package Manager
 icon: octicons/package-16
+description: Install nvibrant via the Arch Linux AUR package, Fedora COPR repository,
+  Nix Flakes, or other community-provided distribution packages.
 tags:
 - Install
 - Package Manager

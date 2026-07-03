@@ -1,6 +1,8 @@
 ---
 title: Vibrance
 icon: octicons/sun-16
+description: Configure Nvidia Digital Vibrance intensity using nvibrant command-line
+  arguments to set saturation levels across specific physical ports and display configurations.
 tags:
 - Documentation
 - Quickstart

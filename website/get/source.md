@@ -1,6 +1,8 @@
 ---
 title: Source Build
 icon: material/git
+description: Build nvibrant from source code using Meson and Ninja to target specific
+  driver versions or use uv build to generate a portable wheel for all drivers.
 tags:
 - Install
 - Source

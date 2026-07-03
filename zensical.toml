@@ -29,6 +29,7 @@ nav = [
     ]},
   ]},
   {Docs = [
+    "docs/index.md",
     "docs/vibrance.md",
     "docs/dithering.md",
     "docs/autostart.md",
