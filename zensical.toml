@@ -1,7 +1,7 @@
 [project]
 site_name = "nvibrant"
-site_description = "🟢 Nvidia Digital Vibrance on Wayland "
 site_author = "Tremeschin"
+site_description = "🟢 Nvidia Digital Vibrance on Wayland"
 site_url  = "https://nvibrant.tremeschin.com/"
 repo_url  = "https://github.com/Tremeschin/nvibrant/"
 repo_name = "Tremeschin/nvibrant"
