@@ -8,6 +8,30 @@ tags:
 - Issues
 ---
 
+## **Q:** Native Wayland Protocol {#saturation-protocol}
+
+A standardized wayland saturation protocol would eliminate the current nvidia-exclusive setting, by providing a common interface for display saturation control for all compositors.
+
+> _Whether you're knowledgeable or know someone involved in wayland development, please try to submit a protocol for it, so Intel/AMD cards becomes an option for everyone._
+
+Strong arguments:
+
+- **:octicons-accessibility-16: Accessibility**: [Daltonic people](https://github.com/Tremeschin/nvibrant/issues/39#issue-4535578528) use it to help mitigate their health condition.
+- **:octicons-issue-opened-16: Open issues** on [nvidia-settings](https://github.com/NVIDIA/nvidia-settings/issues/104), [vibrantLinux](https://github.com/libvibrant/vibrantLinux/issues/27) active for many years.
+- **:material-star: nvibrant's** statistics on star counts, downloads, pypi package.
+
+<small>:white_check_mark: <b>Get in touch</b> when it exists, so I can link it here and participate.</small>
+
+<hr>
+
+## **Q:** Intel and AMD cards {#intel-amd}
+
+See the [:material-laptop: Laptops](./docs/laptop.md) page for insights, and join forces for a native [saturation-protocol](#saturation-protocol).
+
+Apart from that, you can test how your display would look like with stronger colors by using the [mpv](https://github.com/mpv-player/mpv) video player and pressing the <kbd>8</kbd> key in a playback to increase saturation in the shader.
+
+<hr>
+
 ## **Q:** Not working in newer drivers {#new-drivers}
 
 > **Don't panic!** this is inevitable, learn about why in [#driver-compatibility](#driver-compatibility)
