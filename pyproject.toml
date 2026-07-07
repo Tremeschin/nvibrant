@@ -1,6 +1,6 @@
 [project]
 name        = "nvibrant"
-description = "🟢 Nvidia Digital Vibrance on Wayland"
+description = "🟢 Nvidia Digital Vibrance and Dithering on Wayland"
 version     = "1.3.0"
 license     = "MIT"
 readme      = "readme.md"
