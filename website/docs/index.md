@@ -8,7 +8,7 @@ tags:
 - Quickstart
 ---
 
-!!! question "**Advocate** for a vendor-agnostic wayland [saturation-protocol](./help.md#saturation-protocol) today!"
+!!! question "**Advocate** for a vendor-agnostic wayland [saturation-protocol](../help.md#saturation-protocol) today!"
 
 _Welcome to nvibrant docs! • Important pages to know:_
 
