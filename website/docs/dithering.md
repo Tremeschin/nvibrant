@@ -40,9 +40,9 @@ $ ATTRIBUTE=dithering nvibrant 1 1 1 1
 
 ## Mode
 
-!!! warning "Only in [git main](../get/source.md) builds, next patch release will include this option."
+!!! info inline end "**New** in version [v1.3.0](../changelog.md#v1.3.0)"
 
-For setting the dithering mode when enabled, use the following numbers in args:
+For setting the dithering mode when the [#state](#state) is enabled, use the following environment and enum numbers in the args:
 
 ```sh
 $ ATTRIBUTE=dithering-mode nvibrant (...)
@@ -61,9 +61,9 @@ Default value in nvibrant is (0), unsure about the driver.
 
 ## Depth
 
-!!! warning "Only in [git main](../get/source.md) builds, next patch release will include this option."
+!!! info inline end "**New** in version [v1.3.0](../changelog.md#v1.3.0)"
 
-For setting the dithering depth when enabled, use the following numbers in args:
+For setting the dithering depth when the [#state](#state) is enabled, use the following environment and enum numbers in the args:
 
 ```sh
 $ ATTRIBUTE=dithering-depth nvibrant (...)

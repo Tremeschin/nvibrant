@@ -1,6 +1,6 @@
 <div align="center">
   <h1>nvibrant</h1>
-  <p>Configure Nvidia's Digital Vibrance and Dithering on Wayland</p>
+  <p>Nvidia Digital Vibrance and Dithering on Wayland</p>
   <a href="https://pypi.org/project/nvibrant/"><img src="https://img.shields.io/pypi/v/nvibrant?label=PyPI&color=blue"></a>
   <a href="https://pypi.org/project/nvibrant/"><img src="https://img.shields.io/pypi/dw/nvibrant?label=Installs&color=blue"></a>
   <a href="https://github.com/Tremeschin/nvibrant/releases/"><img src="https://img.shields.io/github/v/release/Tremeschin/nvibrant?label=Release&color=light-green"></a>

@@ -12,9 +12,10 @@ tags:
 !!! success "This project is complete and stable, no actions are needed unless a driver update breaks it!"
     - Don't panic when it breaks, follow this [FAQ](./help.md#new-drivers) section for a workaround and asking a patch release.
 
-### :package: v1.3.0 <small>Staging</small> {#v1.3.0}
+### :package: v1.3.0 <small>Sep 10, 2026</small> {#v1.3.0}
 
 !!! quote ""
+    - Support driver v615.71.09 (nvidia breaking changes)
     - Support setting the [Dithering Mode](./docs/dithering.md#mode) requested in [#18 (comment)](https://github.com/Tremeschin/nvibrant/issues/18#issuecomment-4654683807)
     - Support setting the [Dithering Depth](./docs/dithering.md#depth) requested in [#18 (comment)](https://github.com/Tremeschin/nvibrant/issues/18#issuecomment-4654683807)
     - Simplify website path `/about/changelog` to just `/changelog`
@@ -25,9 +26,9 @@ tags:
 ### :package: v1.2.1 <small>May 28, 2026</small> {#v1.2.1}
 
 !!! quote ""
+    - Support driver v610.43.02 (nvidia breaking changes) [#39](https://github.com/Tremeschin/nvibrant/issues/39)
     - Port readme contents into a website made with [Zensical](https://zensical.org/docs/get-started/)
     - Update GitHub Actions workflow to `ubuntu-24.04` for newer GCC versions [#37](https://github.com/Tremeschin/nvibrant/issues/37)
-    - Update prebuilt binaries up to driver v610.43.02 (breaking changes) [#39](https://github.com/Tremeschin/nvibrant/issues/39)
 
 ### :package: v1.2.0 <small>Mar 06, 2026</small> {#v1.2.0}
 

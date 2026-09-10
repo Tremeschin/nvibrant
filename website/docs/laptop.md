@@ -27,7 +27,7 @@ You must ensure only the nvidia card and driver is active on the system, by disa
 
 !!! danger "Expect much worse battery life with such!"
 
-!!! info "**Advocate** for a vendor-agnostic wayland [saturation-protocol](../help.md#saturation-protocol) today!"
+!!! info "**Advocate** for a vendor-agnostic wayland [saturation-protocol](../help.md#wayland-protocol) today!"
 
 Seek help in manuals, forums for your model, send pull requests for information below:
 

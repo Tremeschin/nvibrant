@@ -1,5 +1,4 @@
 import hashlib
-import os
 import subprocess
 import sys
 from pathlib import Path
@@ -78,7 +77,7 @@ class BuildHook(BuildHookInterface):
         )
 
         # Keep track of breaking changes
-        hashes: dict[str, str] = dict()
+        hashes: dict[str, str] = {}
 
         # Make binaries for all known driver version
         for driver in sorted(subprocess.check_output(

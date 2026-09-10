@@ -8,9 +8,9 @@ tags:
 - Issues
 ---
 
-## **Q:** Native Wayland Protocol {#saturation-protocol}
+## **Q:** Native Wayland Protocol {#wayland-protocol}
 
-A standardized wayland saturation protocol would eliminate the current nvidia-exclusive setting, by providing a common interface for display saturation control for all compositors.
+A standardized wayland colors protocol would eliminate the current nvidia-exclusive setting, by providing a common interface for display control for all compositors (brightness, contrast, etc).
 
 > _Whether you're knowledgeable or know someone involved in wayland development, please try to submit a protocol for it, so Intel/AMD cards becomes an option for everyone._
 
@@ -26,7 +26,7 @@ Strong arguments:
 
 ## **Q:** Intel and AMD cards {#intel-amd}
 
-See the [:material-laptop: Laptops](./docs/laptop.md) page for insights, and join forces for a native [saturation-protocol](#saturation-protocol).
+See the [:material-laptop: Laptops](./docs/laptop.md) page for insights, and join forces for a native [saturation-protocol](#wayland-protocol).
 
 Apart from that, you can test how your display would look like with stronger colors by using the [mpv](https://github.com/mpv-player/mpv) video player and pressing the <kbd>8</kbd> key in a playback to increase saturation in the shader.
 

@@ -25,7 +25,7 @@ def get_driver() -> Version:
 
 def get_versions() -> dict[Version, Path]:
     """Compiled binary versions to their paths"""
-    versions = dict()
+    versions = {}
 
     # From build hook, eg. "nvibrant-515.43.04"
     for file in resources.glob("*"):
