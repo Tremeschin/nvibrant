@@ -49,6 +49,9 @@ tag.default = "material/tag"
 [project.extra.tags]
 dummy = "key"
 
+[project.plugins.social]
+enabled = true
+
 [[project.extra.social]]
 icon = "fontawesome/brands/github"
 link = "https://github.com/Tremeschin"
