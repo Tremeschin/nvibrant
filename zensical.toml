@@ -5,6 +5,7 @@ site_description = "🟢 Nvidia Digital Vibrance and Dithering on Wayland"
 site_url  = "https://nvibrant.tremeschin.com/"
 repo_url  = "https://github.com/Tremeschin/nvibrant/"
 repo_name = "Tremeschin/nvibrant"
+extra_css = ["main.css"]
 docs_dir  = "website"
 nav = [
   {Origin = "https://tremeschin.com"},
