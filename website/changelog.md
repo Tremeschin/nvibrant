@@ -12,7 +12,14 @@ tags:
 !!! success "This project is complete and stable, no actions are needed unless a driver update breaks it!"
     - Don't panic when it breaks, follow this [FAQ](./help.md#new-drivers) section for a workaround and asking a patch release.
 
-### :package: v1.3.0 <small>Sep 10, 2026</small> {#v1.3.0}
+## 2026
+
+### :package: v1.3.1 <small>Nov 8</small> {#v1.3.1}
+
+!!! quote ""
+    - Support driver v620.70.06 (nvidia breaking changes) [#42](https://github.com/Tremeschin/nvibrant/issues/42)
+
+### :package: v1.3.0 <small>Sep 10</small> {#v1.3.0}
 
 !!! quote ""
     - Support driver v615.71.09 (nvidia breaking changes)
@@ -23,14 +30,14 @@ tags:
 
 [^mit]: I had chosen GPL in a hurry and by habit. Spiritually, nvibrant should be a small, simple project. :slight_smile:
 
-### :package: v1.2.1 <small>May 28, 2026</small> {#v1.2.1}
+### :package: v1.2.1 <small>May 28</small> {#v1.2.1}
 
 !!! quote ""
     - Support driver v610.43.02 (nvidia breaking changes) [#39](https://github.com/Tremeschin/nvibrant/issues/39)
     - Port readme contents into a website made with [Zensical](https://zensical.org/docs/get-started/)
     - Update GitHub Actions workflow to `ubuntu-24.04` for newer GCC versions [#37](https://github.com/Tremeschin/nvibrant/issues/37)
 
-### :package: v1.2.0 <small>Mar 06, 2026</small> {#v1.2.0}
+### :package: v1.2.0 <small>Mar 06</small> {#v1.2.0}
 
 !!! quote ""
     Maintenance release, support newer drivers, major packaging changes.
@@ -54,7 +61,9 @@ tags:
 
     <small><b>Note</b> that source distributions are intentionally not supported for technical reasons (complex build steps), and that nvidia only has drivers for x86-64 glibc and aarch64 linux (the package is complete).</small>
 
-### :package: v1.1.0 <small>Jul 29, 2025</small> {#v1.1.0}
+## 2025
+
+### :package: v1.1.0 <small>Jul 29</small> {#v1.1.0}
 
 !!! quote ""
     First release with significant changes and new features in a while. Should be fully compatible with the previous usage, recommendation to use pinned version still holds.
@@ -65,19 +74,19 @@ tags:
 
     <small><b>Note:</b> The env var defaults to `vibrance` if unset, in case you use it elsewhere - wished it was a CLI, but it works and I have other priorities.</small>
 
-### :package: v1.0.6 <small>May 25, 2025</small> {#v1.0.6}
+### :package: v1.0.6 <small>May 25</small> {#v1.0.6}
 
 !!! quote ""
     - Add proper Multi GPU support with `NVIDIA_GPU=index` (default: 0) environment variable [#8](https://github.com/Tremeschin/nvibrant/issues/8)
     - Shouldn't break compatibility, slight worry for `>= v575` drivers, feedback welcome!
 
-### :package: v1.0.5 <small>Apr 22, 2025</small> {#v1.0.5}
+### :package: v1.0.5 <small>Apr 22</small> {#v1.0.5}
 
 !!! quote ""
     - Search for a closest match of a previous driver in the bundled files if an exact match is not found (Commit [`f22db7`](https://github.com/Tremeschin/nVibrant/commit/f22db7395545ac93332cf87b197ec80e4d5d1717), issue [#7](https://github.com/Tremeschin/nvibrant/issues/7)). This makes it so that patch or minor bumps don't need a build every time. Should work even across major releases, you can't win if you don't play, right?
     - Added `packaging` dependency on python for easily finding the best version
 
-### :package: v1.0.4 <small>Apr 20, 2025</small> {#v1.0.4}
+### :package: v1.0.4 <small>Apr 20</small> {#v1.0.4}
 
 !!! quote ""
     - Releases are now also published on [PyPI](https://pypi.org/project/nvibrant/). All nvidia driver versions binaries are bundled with them, using the one matching your current driver at runtime.
