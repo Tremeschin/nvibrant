@@ -76,27 +76,32 @@ Follow these steps for a checklist in asking a new patch release and troubleshoo
 
 !!! tip "Always chose the closest, but not newer driver version file!"
 
-There is some level of compatibility across different nvibrant and driver versions, as the related code is mostly stable on nvidia's side. However, internal struct layout changes[^struct-changes] breaks the ioctl communications every so often in new major releases, as seen in:
+There is some level of compatibility across different nvibrant and driver versions, as the related code is mostly stable on nvidia's side. However, internal struct layout changes[^struct-changes] breaks the ioctl communications every so often in new major releases, as seen in [`hatch_build.py`](https://github.com/Tremeschin/nvibrant/blob/9bafd52d0ab3202cdf76a49cb703e25c03a0d8af/hatch_build.py#L107-L121):
 
 [^struct-changes]: For example, the removal of SLI options in 590.xx as Pascal (GTX 10xx) support was dropped happened to be a field in the GPU querying structures nvibrant uses [#31](https://github.com/Tremeschin/nvibrant/issues/31#issuecomment-4012908896), or random changes [#5](https://github.com/Tremeschin/nvibrant/issues/5#issuecomment-2814513826)
 
-```sh
-$ unzip nvibrant-*-py3-none-manylinux_2_17_x86_64.whl
-$ md5sum nvibrant/resources/* | /bin/uniq -w32
 ```
+$ uv build --wheel
+(...)
 
-```
-6b9ec215720784c4c054825d9ece0bc1  nvibrant/resources/nvibrant-515.43.04
-eadac0e0a9561622e99bda44c270902b  nvibrant/resources/nvibrant-525.47.04
-9d5db7eba4830c967ea09682ac4b664d  nvibrant/resources/nvibrant-530.30.02
-4d1392be4ec7dcb58e046b0336cde5ff  nvibrant/resources/nvibrant-535.43.02
-041bfdaaeda4ea9b861e647b4ce62f09  nvibrant/resources/nvibrant-545.23.06
-91bc7cbb12ca31156ccaca5d5e32e6a7  nvibrant/resources/nvibrant-560.28.03
-4c3d16ff6094a85d9d6a16c97d810c6d  nvibrant/resources/nvibrant-565.57.01
-5f5ac2875d3535cd3bfcf2e7a96c813d  nvibrant/resources/nvibrant-570.86.15
-2ff5ff75acd9d2775db6d06eef4f437b  nvibrant/resources/nvibrant-570.207
-b33bc562dc8c67f924cea9bb12b18fc4  nvibrant/resources/nvibrant-575.51.02
-b0d592a68e4e22a843318074b960b9c1  nvibrant/resources/nvibrant-595.45.04
+Breaking changes across driver versions:
+• 863d221c62e2d33b4a6c8ca339aa226f  515.105.01
+• 5fd8156069652d0b391e47e3e8829727  525.105.17
+• d5886d1078ac5ee2ea534c7656574932  530.30.02
+• e8c75422e1bcb3bce6814d7fe80bb8e1  535.104.05
+• f34ce840fe61d912f8ca0dee98582e7d  545.23.06
+• 66ca6dd1bf1b970d76d22025189ea520  560.28.03
+• f5d81922f56fa19c315cd337f82158dd  565.57.01
+• 9501cbd2421dcbc744ffbf96df6b8264  570.123.01
+• 99c81b5cecdada319d14c20f7ec7a869  570.207
+• 24dbdec0f91de3670fdf35c830c8ad4d  575.51.02
+• 5bbeda89c90e81a5dac8a19b2a4657a3  595.104.02
+• 3177754bdea0f33d08e19b2a218920a9  610.43.02
+• 69e206a262263d607c8aceb9ed4378e5  615.71.09
+• aa28f96477d9af03e819fb52ff884b9f  620.70.06
+
+Successfully built dist/nvibrant-1.3.1-py3-none-manylinux_2_17_x86_64.whl
+
 ```
 
 Any driver version between two versions _should_ work using the lowest of the two - this choice is automatically made by the [Python utility](./get/pypi.md), manual usage should follow the same logic!
