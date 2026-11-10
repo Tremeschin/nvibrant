@@ -100,10 +100,10 @@ int main(int argc, char *argv[]) {
             continue;
         }
 
+        std::vector<NvKmsQueryConnectorStaticDataReply> outputs(queryDisp.reply.numConnectors);
+
         // Iterate on all physical connections of the GPU (literally, hdmi, dp, etc.)
         for (NvU32 connector=0; connector<queryDisp.reply.numConnectors; connector++) {
-            index++;
-
             // Get 'immutable' static data (such as connector type)
             NvKmsQueryConnectorStaticDataParams staticData{};
             staticData.request.deviceHandle    = allocDevice.reply.deviceHandle;
@@ -114,19 +114,47 @@ int main(int argc, char *argv[]) {
                 continue;
             }
 
+            outputs[connector] = staticData.reply;
+
+            NvKmsQueryConnectorDynamicDataParams connectorData{};
+            connectorData.request.deviceHandle = allocDevice.reply.deviceHandle;
+            connectorData.request.dispHandle = allocDevice.reply.dispHandles[display];
+            connectorData.request.connectorHandle = queryDisp.reply.connectorHandles[connector];
+            if (easy_nvkms_ioctl(modeset, NVKMS_IOCTL_QUERY_CONNECTOR_DYNAMIC_DATA, &connectorData) < 0) {
+                printf("QueryConnectorDynamicData ioctl failed\n");
+                continue;
+            }
+
+            NvU32 dynamicDpys = nvDpyIdListToNvU32(connectorData.reply.dynamicDpyIdList);
+            for (NvU32 bit = 1; bit != 0; bit <<= 1) {
+                if (dynamicDpys & bit) {
+                    auto output = staticData.reply;
+                    output.dpyId = nvNvU32ToDpyId(bit);
+                    outputs.push_back(output);
+                }
+            }
+        }
+
+        // Keep static connector slots first, then append dynamic outputs.
+        for (NvU32 output=0; output<outputs.size(); output++) {
+            index++;
+            const auto& staticData = outputs[output];
+            if (nvDpyIdIsInvalid(staticData.dpyId))
+                continue;
+
             // Get the 'dynamic' data (is connected?)
             NvKmsQueryDpyDynamicDataParams dynamicData{};
             dynamicData.request.deviceHandle    = allocDevice.reply.deviceHandle;
             dynamicData.request.dispHandle      = allocDevice.reply.dispHandles[display];
-            dynamicData.request.dpyId           = staticData.reply.dpyId;
+            dynamicData.request.dpyId           = staticData.dpyId;
             if (easy_nvkms_ioctl(modeset, NVKMS_IOCTL_QUERY_DPY_DYNAMIC_DATA, &dynamicData) < 0) {
                 printf("QueryDpy ioctl failed\n");
                 continue;
             }
 
             // Print basic display info
-            printf("• (%d, ", connector);
-            switch (staticData.reply.type) {
+            printf("• (%d, ", output);
+            switch (staticData.type) {
                 case NVKMS_CONNECTOR_TYPE_DP:    printf("DP  "); break;
                 case NVKMS_CONNECTOR_TYPE_VGA:   printf("VGA "); break;
                 case NVKMS_CONNECTOR_TYPE_DVI_I: printf("DVII"); break;
@@ -138,13 +166,13 @@ int main(int argc, char *argv[]) {
                 case NVKMS_CONNECTOR_TYPE_DSI:   printf("DSI "); break;
                 default: break;
             }
-            printf(") • ");
+            printf(") • %s • ", dynamicData.reply.name);
 
             // Make the request to set attribute for this monitor
             NvKmsSetDpyAttributeParams setDpyAttr{};
             setDpyAttr.request.deviceHandle = allocDevice.reply.deviceHandle;
             setDpyAttr.request.dispHandle   = allocDevice.reply.dispHandles[display];
-            setDpyAttr.request.dpyId        = staticData.reply.dpyId;
+            setDpyAttr.request.dpyId        = staticData.dpyId;
 
             // Branch on what display attribute to set
             if (strcmp(ATTRIBUTE, "vibrance") == 0) {

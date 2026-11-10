@@ -14,6 +14,11 @@ tags:
 
 ## 2026
 
+### :package: v1.3.2 <small>Staging</small> {#v1.3.2}
+
+!!! quote ""
+    - Support dynamic outputs at additional argument indices, including DP MST monitors on Thunderbolt docks.
+
 ### :package: v1.3.1 <small>Nov 8</small> {#v1.3.1}
 
 !!! quote ""
