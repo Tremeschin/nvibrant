@@ -45,7 +45,7 @@ const char* ATTRIBUTE = []() {
 
 // Wrapper to populate a NvKmsIoctlParams and call ioctl for generic types
 template <typename T> int easy_nvkms_ioctl(int fd, NvU32 cmd, T* data) {
-    NvKmsIoctlParams params;
+    NvKmsIoctlParams params{};
     params.cmd     = cmd;
     params.size    = sizeof(T);
     params.address = (NvU64) data;
@@ -71,8 +71,7 @@ int main(int argc, char *argv[]) {
     }
 
     // Initialize nvkms to get a deviceHandle, dispHandle, etc.
-    struct NvKmsAllocDeviceParams allocDevice;
-    memset(&allocDevice, 0, sizeof(allocDevice));
+    struct NvKmsAllocDeviceParams allocDevice{};
     memcpy(&allocDevice.request.deviceId, &NVIDIA_GPU, sizeof(NvU32));
     strcpy(allocDevice.request.versionString, NVIDIA_DRIVER_VERSION);
     allocDevice.request.no3d = NV_TRUE;
@@ -93,7 +92,7 @@ int main(int argc, char *argv[]) {
     // Iterate on all displays in the system, querying their info
     for (NvU32 display=0; display<allocDevice.reply.numDisps; display++) {
         printf("\nDisplay %d:\n", display);
-        NvKmsQueryDispParams queryDisp;
+        NvKmsQueryDispParams queryDisp{};
         queryDisp.request.deviceHandle = allocDevice.reply.deviceHandle;
         queryDisp.request.dispHandle   = allocDevice.reply.dispHandles[display];
         if (easy_nvkms_ioctl(modeset, NVKMS_IOCTL_QUERY_DISP, &queryDisp) < 0) {
@@ -106,7 +105,7 @@ int main(int argc, char *argv[]) {
             index++;
 
             // Get 'immutable' static data (such as connector type)
-            NvKmsQueryConnectorStaticDataParams staticData;
+            NvKmsQueryConnectorStaticDataParams staticData{};
             staticData.request.deviceHandle    = allocDevice.reply.deviceHandle;
             staticData.request.dispHandle      = allocDevice.reply.dispHandles[display];
             staticData.request.connectorHandle = queryDisp.reply.connectorHandles[connector];
@@ -116,7 +115,7 @@ int main(int argc, char *argv[]) {
             }
 
             // Get the 'dynamic' data (is connected?)
-            NvKmsQueryDpyDynamicDataParams dynamicData;
+            NvKmsQueryDpyDynamicDataParams dynamicData{};
             dynamicData.request.deviceHandle    = allocDevice.reply.deviceHandle;
             dynamicData.request.dispHandle      = allocDevice.reply.dispHandles[display];
             dynamicData.request.dpyId           = staticData.reply.dpyId;
@@ -142,7 +141,7 @@ int main(int argc, char *argv[]) {
             printf(") • ");
 
             // Make the request to set attribute for this monitor
-            NvKmsSetDpyAttributeParams setDpyAttr;
+            NvKmsSetDpyAttributeParams setDpyAttr{};
             setDpyAttr.request.deviceHandle = allocDevice.reply.deviceHandle;
             setDpyAttr.request.dispHandle   = allocDevice.reply.dispHandles[display];
             setDpyAttr.request.dpyId        = staticData.reply.dpyId;
@@ -181,7 +180,7 @@ int main(int argc, char *argv[]) {
     }
 
     // Deallocate device just in case it's not gc-ed on the driver side
-    struct NvKmsFreeDeviceParams freeDevice;
+    struct NvKmsFreeDeviceParams freeDevice{};
     freeDevice.request.deviceHandle = allocDevice.reply.deviceHandle;
     if (easy_nvkms_ioctl(modeset, NVKMS_IOCTL_FREE_DEVICE, &freeDevice) < 0) {
         printf("Failed to free device handle\n");
